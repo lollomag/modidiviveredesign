@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Membership — modidivivere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Brand override */
+.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
+
+
+/* —— Hero —— */
+.m-hero {
+  padding: 160px 0 80px;
+  background: linear-gradient(180deg, var(--sky) 0%, white 100%);
+  position: relative; overflow: hidden;
+}
+.m-hero::before {
+  content: ''; position: absolute; top: 60px; right: -160px;
+  width: 560px; height: 560px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,144,217,.18) 0%, transparent 70%);
+  filter: blur(20px);
+}
+.m-hero-inner { max-width: 880px; position: relative; }
+.m-hero .kicker {
+  font-size: 0.78rem; letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--sea); display: inline-flex; align-items: center; gap: 14px;
+}
+.m-hero .kicker::before { content: ''; width: 38px; height: 1px; background: var(--sea); }
+.m-hero h1 {
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  margin: 24px 0 28px; line-height: 1.06;
+}
+.m-hero h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.m-hero .lead {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--muted); max-width: 680px; line-height: 1.55;
+  margin-bottom: 32px;
+}
+
+/* —— Manifesto: how membership works —— */
+.m-how { padding: 72px 0; background: white; }
+.m-how-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 56px; }
+.m-step {
+  background: var(--sky);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  position: relative;
+  transition: transform .5s ease, box-shadow .5s ease;
+}
+.m-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.m-step .n {
+  font-family: var(--serif); font-style: italic; font-size: 2.4rem;
+  color: var(--sea); line-height: 1; margin-bottom: 18px;
+  font-weight: 400;
+}
+.m-step h3 { font-size: 1.35rem; margin-bottom: 10px; }
+.m-step h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.m-step p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
+.m-head { max-width: 760px; }
+.m-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.m-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+
+
+/* —— Accreditamento —— */
+.accredit { padding: 72px 0; background: white; }
+.accredit-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; }
+.accredit h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.accredit p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; margin: 22px 0; }
+.accredit .req {
+  list-style: none; padding: 0; margin: 28px 0;
+}
+.accredit .req li {
+  display: grid; grid-template-columns: 30px 1fr; gap: 14px;
+  padding: 16px 0; border-top: 1px solid var(--line);
+  align-items: start;
+}
+.accredit .req li:first-child { border-top: none; }
+.accredit .req .roman {
+  font-family: var(--serif); font-style: italic; color: var(--sea); font-size: 1.05rem;
+}
+.accredit .req strong { display: block; color: var(--navy); font-weight: 500; margin-bottom: 4px; }
+.accredit .req span { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+.accredit-card {
+  background: var(--sand);
+  border-radius: var(--radius-lg);
+  padding: 40px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.accredit-card::before {
+  content: ''; position: absolute; right: -80px; top: -80px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: rgba(74,144,217,.22); filter: blur(40px);
+}
+.accredit-card .lbl {
+  font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--navy); font-weight: 500; margin-bottom: 14px; position: relative;
+}
+.accredit-card h3 { font-size: 1.7rem; margin-bottom: 14px; position: relative; }
+.accredit-card h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.accredit-card p { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.05rem; line-height: 1.55; opacity: .85; margin-bottom: 28px; position: relative; }
+.accredit-card .btn { position: relative; }
+
+/* —— Login area —— */
+.login { padding: 72px 0; background: var(--navy); color: white; }
+.login-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1080px; margin: 0 auto; }
+.login h2 { color: white; }
+.login h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
+.login .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.login p { color: rgba(255,255,255,.78); line-height: 1.7; margin: 22px 0 28px; max-width: 460px; }
+
+.login-form {
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--radius-lg);
+  padding: 40px 42px;
+}
+.login-form h3 { color: white; font-family: var(--serif); font-style: italic; font-size: 1.5rem; font-weight: 400; margin-bottom: 8px; }
+.login-form .sub { color: rgba(255,255,255,.65); font-size: 0.88rem; margin-bottom: 28px; }
+.login-form .field { margin-bottom: 18px; }
+.login-form label {
+  display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,.7); margin-bottom: 8px;
+}
+.login-form input {
+  width: 100%; padding: 14px 16px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 12px;
+  color: white; font-family: var(--sans); font-size: 1rem;
+  transition: all .3s ease;
+}
+.login-form input:focus {
+  outline: none; border-color: var(--sand);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 0 0 4px rgba(245,230,200,.14);
+}
+.login-form input::placeholder { color: rgba(255,255,255,.4); }
+.login-form .row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.84rem; color: rgba(255,255,255,.65);
+  margin: 8px 0 22px;
+}
+.login-form .row a { color: var(--sand); }
+.login-form button {
+  width: 100%; padding: 16px 24px;
+  background: var(--sand); color: var(--navy);
+  border: none; border-radius: 999px;
+  font-family: var(--sans); font-weight: 500; font-size: 0.96rem; letter-spacing: 0.02em;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.login-form button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(245,230,200,.28); }
+.login-form .also {
+  text-align: center; margin-top: 22px;
+  font-size: 0.86rem; color: rgba(255,255,255,.55);
+}
+.login-form .also a { color: var(--sand); }
+
+@media (max-width: 980px) {
+  .m-how-grid { grid-template-columns: 1fr; }
+  .accredit-grid, .login-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">m</span>
+      <span class="brand-name">modi<em>di</em>vivere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="servizi.html">I servizi</a></li>
+      <li><a href="membership.html" class="active">La Membership</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+    </ul>
+    <a href="#accreditamento" class="nav-cta">
+      Richiesta accreditamento
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="m-hero" data-screen-label="05 Membership — Hero">
+  <div class="container">
+    <div class="m-hero-inner">
+      <span class="kicker reveal">La Membership · 2026</span>
+      <h1 class="reveal delay-1">Una rete piccola,<br><em>aperta su accreditamento.</em></h1>
+      <p class="lead reveal delay-2">La membership è la porta d'accesso al concierge dedicato, ai partner della rete e all'agenda di esperienze riservate. Lavoriamo in piccoli numeri perché ogni richiesta merita una risposta personale.</p>
+      <div class="reveal delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#accreditamento" class="btn btn-primary">Richiedi accreditamento</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Come funziona -->
+<section class="m-how" data-screen-label="05 Membership — Come funziona">
+  <div class="container">
+    <div class="m-head">
+      <span class="kicker reveal">Come funziona</span>
+      <h2 class="reveal delay-1">Una membership <em>su misura.</em></h2>
+    </div>
+    <div class="m-how-grid">
+      <div class="m-step reveal">
+        <div class="n">i.</div>
+        <h3>Conosciamoci</h3>
+        <p>Una richiesta di accreditamento, una conversazione di trenta minuti. Capiamo insieme chi sei, cosa cerchi, quanto tempo vuoi passare nelle nostre terre.</p>
+      </div>
+      <div class="m-step reveal delay-1">
+        <div class="n">ii.</div>
+        <h3>Definiamo <em>insieme</em></h3>
+        <p>Costruiamo una proposta su misura per la tua intensità d'uso: un soggiorno, una presenza ricorrente o una residenza stabile.</p>
+      </div>
+      <div class="m-step reveal delay-2">
+        <div class="n">iii.</div>
+        <h3>Accedi alla <em>rete</em></h3>
+        <p>Concierge personale, condizioni riservate dei partner, agenda di esperienze private, fatturazione unica. Tutto da una sola piattaforma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Accreditamento -->
+<section class="accredit" id="accreditamento" data-screen-label="05 Membership — Accreditamento">
+  <div class="container">
+    <div class="accredit-grid">
+      <div>
+        <span class="kicker reveal" style="color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px;">Richiesta accreditamento</span>
+        <h2 class="reveal delay-1">Tre passi <em>per entrare nella rete.</em></h2>
+        <p class="reveal delay-2">Manteniamo la rete piccola per garantirne la qualità. Ogni nuovo membro arriva attraverso un percorso di conoscenza — è il modo in cui ci assicuriamo che la nostra cura per il dettaglio resti coerente.</p>
+
+        <ul class="req">
+          <li class="reveal">
+            <span class="roman">i.</span>
+            <div><strong>Compila la richiesta</strong><span>Pochi dati, le tue preferenze, una nota libera su cosa cerchi.</span></div>
+          </li>
+          <li class="reveal delay-1">
+            <span class="roman">ii.</span>
+            <div><strong>Conversazione iniziale</strong><span>Una telefonata di trenta minuti con Carlotta o Davide, entro 48 ore.</span></div>
+          </li>
+          <li class="reveal delay-2">
+            <span class="roman">iii.</span>
+            <div><strong>Conferma e benvenuto</strong><span>Ricevi le credenziali della piattaforma e il contatto del tuo concierge.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="accredit-card reveal delay-2">
+        <div class="lbl">Inizia da qui</div>
+        <h3>Richiedi <em>l'accreditamento.</em></h3>
+        <p>Pochi minuti per raccontarci chi sei. Ti rispondiamo personalmente entro 48 ore — senza impegno.</p>
+        <a href="contatti.html#accreditamento" class="btn btn-primary cta-float">
+          Apri la richiesta
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Login area -->
+<section class="login" id="login" data-screen-label="05 Membership — Login">
+  <div class="container">
+    <div class="login-inner">
+      <div>
+        <span class="kicker reveal">Area membri</span>
+        <h2 class="reveal delay-1">Già <em>accreditato?</em></h2>
+        <p class="reveal delay-2">Accedi alla piattaforma di booking, all'agenda esperienze e al tuo concierge. Le tue credenziali ti sono state inviate via email al momento dell'accreditamento.</p>
+        <p class="reveal delay-3" style="font-size:0.88rem; opacity:.6;">Per problemi di accesso, scrivi a <a href="mailto:studio@modidivivere.it" style="color:var(--sand);">studio@modidivivere.it</a> o chiama il +39 0185 770 412.</p>
+      </div>
+
+      <form class="login-form reveal delay-2" onsubmit="event.preventDefault(); alert('Area membri — in costruzione');">
+        <h3>Accedi</h3>
+        <div class="sub">Inserisci le tue credenziali per entrare nell'area riservata.</div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="il-tuo@indirizzo.it" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="pw">Password</label>
+          <input type="password" id="pw" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <div class="row">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; letter-spacing:0;">
+            <input type="checkbox" style="width:auto;"> Ricordami
+          </label>
+          <a href="#">Password dimenticata?</a>
+        </div>
+        <button type="submit">
+          Entra
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+        <div class="also">Non sei ancora membro? <a href="#accreditamento">Richiedi accreditamento</a></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer on-navy">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="color:white;">
+          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
+          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        </a>
+        <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
+      </div>
+      <div>
+        <h4>Naviga</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">I servizi</a></li>
+          <li><a href="membership.html">La Membership</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Accesso</h4>
+        <ul>
+          <li><a href="contatti.html#accreditamento">Richiesta accreditamento</a></li>
+          <li><a href="membership.html#login">Login membri</a></li>
+          <li><a href="contatti.html">Descrivi cosa cerchi</a></li>
+          <li><a href="contatti.html">Prenota i servizi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Via al Porto, 8</li>
+          <li>16032 Camogli (GE)</li>
+          <li>+39 0185 770 412</li>
+          <li>studio@modidivivere.it</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 modidivivere — P.IVA 02478910103</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

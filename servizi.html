@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I servizi — modidivivere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* —— Brand —— */
+.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
+
+/* —— Servizi hero —— */
+.svc-hero {
+  padding: 150px 0 72px;
+  background: linear-gradient(180deg, var(--sky) 0%, white 100%);
+  position: relative;
+  overflow: hidden;
+}
+.svc-hero::before {
+  content: '';
+  position: absolute;
+  top: 80px; right: -120px;
+  width: 520px; height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74, 144, 217, 0.18) 0%, transparent 70%);
+  filter: blur(20px);
+}
+.svc-hero-inner { max-width: 880px; position: relative; }
+.svc-hero h1 {
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  margin-top: 22px;
+  margin-bottom: 32px;
+}
+.svc-hero h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.svc-hero p.lead {
+  font-size: 1.18rem;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.75;
+}
+
+/* —— TOC pill links —— */
+.svc-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 56px;
+}
+.svc-toc a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--navy);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.svc-toc a:hover {
+  border-color: var(--sea);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* —— Ambiti —— */
+.svc-ambiti {
+  padding: 72px 0;
+  background: var(--white);
+  position: relative;
+}
+.amb-block {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 64px;
+  align-items: center;
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 140px;
+}
+.amb-block:first-of-type { border-top: none; }
+.amb-block.reverse { direction: rtl; }
+.amb-block.reverse > * { direction: ltr; }
+.amb-block .amb-figure {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+.amb-block .amb-figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.amb-block:hover .amb-figure img { transform: scale(1.04); }
+.amb-block .amb-figure .ico-badge {
+  position: absolute; top: 22px; left: 22px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px);
+  display: grid; place-items: center;
+  color: var(--sand-deep);
+  box-shadow: var(--shadow-sm);
+}
+.amb-block .amb-info .label {
+  font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--sand-deep); font-weight: 500; margin-bottom: 14px; display: block;
+}
+.amb-block .amb-info h3 {
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.amb-block .amb-info h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.amb-block .amb-info p { color: var(--muted); font-size: 1.02rem; line-height: 1.75; margin-bottom: 20px; }
+.amb-block .amb-bul {
+  list-style: none; display: grid; gap: 10px; margin-top: 14px;
+}
+.amb-block .amb-bul li {
+  display: grid; grid-template-columns: 20px 1fr; gap: 12px;
+  font-size: 0.94rem; color: var(--ink); align-items: start;
+}
+.amb-block .amb-bul .tick { color: var(--sea); margin-top: 4px; }
+
+@media (max-width: 880px) {
+  .amb-block { grid-template-columns: 1fr; gap: 32px; padding: 44px 0; }
+  .amb-block.reverse { direction: ltr; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">m</span>
+      <span class="brand-name">modi<em>di</em>vivere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="servizi.html" class="active">I servizi</a></li>
+      <li><a href="membership.html">La Membership</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+    </ul>
+    <a href="contatti.html" class="nav-cta">
+      Prenota i servizi
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Servizi hero -->
+<header class="svc-hero" data-screen-label="02 Servizi — Hero">
+  <div class="container">
+    <div class="svc-hero-inner">
+      <span class="eyebrow reveal">I servizi esclusivi</span>
+      <h1 class="reveal delay-1">Tre pilastri,<br>una sola <em>cura del dettaglio.</em></h1>
+      <p class="lead reveal delay-2">Da Portofino a Viareggio, lavoriamo su tre fronti: un concierge che è il tuo assistente locale, una rete di partner costruita persona per persona, e una piattaforma di booking che li mette tutti a portata di un solo accesso.</p>
+      
+      <div class="svc-toc reveal delay-3" style="margin-top: 14px;">
+        <a href="#casa">Casa</a>
+        <a href="#barca">Barca</a>
+        <a href="#azienda">Azienda</a>
+        <a href="#vacanze">Vacanze</a>
+        <a href="#territorio">Territorio</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ——— Cinque ambiti ——— -->
+<section class="svc-ambiti" data-screen-label="02 Servizi — Cinque ambiti">
+  <div class="container">
+    <div class="amb-block" id="casa">
+      <div class="amb-figure reveal">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format&fit=crop" alt="Villa con piscina sul mare">
+        <div class="ico-badge">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14 16 5l11 9"/><path d="M7 13v13h18V13"/><path d="M13 26v-7h6v7"/></svg>
+        </div>
+      </div>
+      <div class="amb-info reveal delay-1">
+        <span class="label">Casa</span>
+        <h3>Spazi che <em>diventano tuoi.</em></h3>
+        <p>Progettiamo e valorizziamo i tuoi spazi con soluzioni su misura: dalla ricerca della dimora alla regia di ristrutturazioni, dagli arredi alla gestione quotidiana. Una sola interfaccia per architetto, impresa, fornitori e personale di casa.</p>
+        <ul class="amb-bul">
+          <li><span class="tick">✓</span><span>Ricerca, due diligence e acquisto della dimora</span></li>
+          <li><span class="tick">✓</span><span>Direzione lavori e interior design</span></li>
+          <li><span class="tick">✓</span><span>Property management e personale residente</span></li>
+          <li><span class="tick">✓</span><span>Concierge stagionale per arrivi e partenze</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="amb-block reverse" id="barca">
+      <div class="amb-figure reveal">
+        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&q=80&auto=format&fit=crop" alt="Yacht in navigazione">
+        <div class="ico-badge">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0 4-1.5 6 0"/><path d="M6 17l2-7h16l2 7"/><path d="M16 4v6"/><path d="M12 7h8"/></svg>
+        </div>
+      </div>
+      <div class="amb-info reveal delay-1">
+        <span class="label">Barca</span>
+        <h3>Il mare, <em>senza pensieri.</em></h3>
+        <p>Gestione, manutenzione e servizi dedicati per vivere il mare senza preoccupazioni operative. Dall'ormeggio al rifornimento, dall'equipaggio alle pratiche, ci occupiamo di tutto perché tu debba solo salire a bordo.</p>
+        <ul class="amb-bul">
+          <li><span class="tick">✓</span><span>Yacht management e refitting</span></li>
+          <li><span class="tick">✓</span><span>Ormeggi riservati lungo la costa</span></li>
+          <li><span class="tick">✓</span><span>Equipaggio, catering e provisioning</span></li>
+          <li><span class="tick">✓</span><span>Charter privati e crociere su misura</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="amb-block" id="azienda">
+      <div class="amb-figure reveal">
+        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80&auto=format&fit=crop" alt="Scrivania d'autore">
+        <div class="ico-badge">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="24" height="16" rx="2"/><path d="M11 10V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M4 17h24"/><path d="M14 17v2h4v-2"/></svg>
+        </div>
+      </div>
+      <div class="amb-info reveal delay-1">
+        <span class="label">Azienda</span>
+        <h3>Strumenti su misura <em>per chi guida.</em></h3>
+        <p>Supporto strategico e servizi su misura per far crescere il tuo business. Da retreat manageriali a eventi privati per clienti, fino a programmi di benessere per le persone chiave: il territorio diventa leva di engagement.</p>
+        <ul class="amb-bul">
+          <li><span class="tick">✓</span><span>Retreat e off-site per leadership team</span></li>
+          <li><span class="tick">✓</span><span>Eventi privati con clienti e investitori</span></li>
+          <li><span class="tick">✓</span><span>Programmi well-being per executive</span></li>
+          <li><span class="tick">✓</span><span>Gifting territoriale curato</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="amb-block reverse" id="vacanze">
+      <div class="amb-figure reveal">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=80&auto=format&fit=crop" alt="Piscina infinity sul mare">
+        <div class="ico-badge">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17l9-2 5-9 2 1-3 9 7-2 1 2-9 4-2 5-2-1 1-5-7 1z"/></svg>
+        </div>
+      </div>
+      <div class="amb-info reveal delay-1">
+        <span class="label">Vacanze</span>
+        <h3>Tempo lento, <em>senza compromessi.</em></h3>
+        <p>Esperienze esclusive e viaggi su misura: dalla settimana in famiglia al weekend romantico, dal viaggio di nozze al ritrovo di amici. Costruiamo l'itinerario, scegliamo le persone giuste, sistemiamo ogni dettaglio.</p>
+        <ul class="amb-bul">
+          <li><span class="tick">✓</span><span>Itinerari cuciti su gusti e ritmi</span></li>
+          <li><span class="tick">✓</span><span>Dimore curate e tavoli riservati</span></li>
+          <li><span class="tick">✓</span><span>Transfer privati e logistica integrale</span></li>
+          <li><span class="tick">✓</span><span>Concierge attivo durante il soggiorno</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="amb-block" id="territorio">
+      <div class="amb-figure reveal">
+        <img src="https://images.unsplash.com/photo-1530538095376-a4936b35b5f0?w=1200&q=80&auto=format&fit=crop" alt="Borgo costiero">
+        <div class="ico-badge">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28s-9-8-9-15a9 9 0 1 1 18 0c0 7-9 15-9 15z"/><circle cx="16" cy="13" r="3.2"/></svg>
+        </div>
+      </div>
+      <div class="amb-info reveal delay-1">
+        <span class="label">Territorio</span>
+        <h3>Eccellenze <em>che si raccontano.</em></h3>
+        <p>Scopri e vivi le eccellenze del territorio attraverso percorsi autentici. Vignaioli, artigiani, pescatori, chef, geologi: la nostra rete ti apre porte normalmente chiuse, in piccoli numeri e con guide vere.</p>
+        <ul class="amb-bul">
+          <li><span class="tick">✓</span><span>Degustazioni in cantina e in vigna</span></li>
+          <li><span class="tick">✓</span><span>Botteghe e laboratori d'artigiano</span></li>
+          <li><span class="tick">✓</span><span>Trekking d'autore con guide locali</span></li>
+          <li><span class="tick">✓</span><span>Incontri con chef, pescatori, vignaioli</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA -->
+<section class="closing" style="background: var(--white); padding: 72px 0;">
+  <div class="container">
+    <div class="closing-inner" style="text-align:center; max-width: 720px; margin: 0 auto;">
+      <span class="eyebrow reveal">Su misura, sempre</span>
+      <h2 class="reveal delay-1" style="margin-top: 14px; margin-bottom: 22px;">Ogni viaggio <em style="font-style:italic;color:var(--sea);font-weight:400;">comincia da una telefonata.</em></h2>
+      <p class="reveal delay-2" style="color:var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 36px;">Raccontateci chi siete, quanti giorni avete, cosa vi farebbe felici. Da lì costruiamo, in tre giorni, una proposta riservata.</p>
+      <div class="reveal delay-3">
+        <a href="contatti.html" class="btn btn-primary cta-float">
+          Inizia il tuo viaggio
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="color:white;">
+          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
+          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        </a>
+        <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
+      </div>
+      <div>
+        <h4>Naviga</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">I servizi</a></li>
+          <li><a href="membership.html">La Membership</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Via al Porto, 8</li>
+          <li>16032 Camogli (GE)</li>
+          <li>+39 0185 770 412</li>
+          <li>studio@modidivivere.it</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stagione</h4>
+        <ul>
+          <li>Lunedì — Venerdì</li>
+          <li>9.00 — 19.00</li>
+          <li>Sabato su appuntamento</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 modidivivere — P.IVA 02478910103</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

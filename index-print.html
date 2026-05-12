@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>modidivivere — Concierge Territoriale tra Liguria e Toscana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* —— PRINT —— */
+@page { size: A4 landscape; margin: 0.5cm; }
+html, body { background: white !important; }
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+/* Hide chrome that doesn't translate to print */
+.aux, .nav, .menu-btn, .cta-float, .hero-actions, .center-actions,
+.book-card .cta, .closing .reveal.delay-3, .footer-bottom { display: none !important; }
+
+/* Disable JS animations / reveal hidden state */
+.reveal { opacity: 1 !important; transform: none !important; }
+
+/* Hero: cap height so it fits one page, kill parallax transforms */
+.hero { min-height: auto !important; height: 18cm; padding: 0 !important; page-break-after: always; break-after: page; }
+.hero-media { inset: 0 !important; transform: none !important; }
+.hero-img { height: 100% !important; }
+.hero-inner { padding: 80px 0 60px !important; }
+.hero .meta-row { bottom: 20px; }
+
+/* Each major section on its own page */
+.center, .pillars, .terre, .booking, .member, .closing {
+  page-break-before: page; break-before: page;
+  page-break-inside: avoid; break-inside: avoid;
+  padding: 50px 0 !important;
+  min-height: auto !important;
+}
+.closing { page-break-after: auto; break-after: auto; }
+
+/* Pillars: keep 3 columns */
+.pillar-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
+.pillar { break-inside: avoid; box-shadow: none !important; }
+.pillar .body { padding: 20px 22px 24px !important; }
+.pillar p { font-size: 0.86rem !important; }
+.pillar .more { display: none !important; }
+
+/* Terre: keep 2 columns */
+.terre-head { grid-template-columns: 1fr 1fr !important; gap: 40px !important; margin-bottom: 30px !important; }
+.terre-cols { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+.terre-col { break-inside: avoid; padding: 24px 26px !important; }
+
+/* Booking + member: keep 2 columns */
+.booking-grid, .member-inner { grid-template-columns: 1.1fr 1fr !important; gap: 40px !important; }
+.book-card { break-inside: avoid; }
+.member-card { break-inside: avoid; box-shadow: none !important; border: 1px solid var(--line); }
+
+/* Footer compact */
+.footer { padding: 30px 0 !important; page-break-before: page; break-before: page; }
+.footer-grid { gap: 24px !important; }
+
+/* Trim heading sizes for paged output */
+h1 { font-size: 3.4rem !important; }
+h2 { font-size: 2.2rem !important; }
+section h2 { font-size: 2rem !important; }
+
+/* Anchor styling - remove underlines that may appear */
+a { text-decoration: none !important; }
+</style>
+<style>
+/* —— Brand naming override —— */
+.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
+
+
+/* —— Hero —— */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  isolation: isolate;
+}
+.hero-media { position: absolute; inset: -6% 0 0 0; z-index: -2; }
+.hero-media::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(15,36,68,0.18) 0%, rgba(15,36,68,0.18) 30%, rgba(15,36,68,0.65) 100%),
+    linear-gradient(90deg, rgba(15,36,68,0.45) 0%, rgba(15,36,68,0) 60%);
+  z-index: 1;
+}
+.hero-img { width: 100%; height: 112%; object-fit: cover; display: block; }
+.hero-inner { position: relative; z-index: 2; padding: 180px 0 140px; max-width: 880px; }
+.hero .kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--sand);
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.hero .kicker::before { content: ''; width: 38px; height: 1px; background: var(--sand); }
+.hero h1 {
+  color: white;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.06;
+  margin: 28px 0 26px;
+}
+.hero h1 .you { font-style: italic; color: var(--sand); font-weight: 400; }
+.hero .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  color: rgba(255,255,255,0.92);
+  max-width: 620px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+.hero .sub b { font-style: normal; font-family: var(--sans); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.78rem; color: var(--sand); display: block; margin-top: 22px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+.hero .meta-row {
+  position: absolute; left: 0; right: 0; bottom: 38px; z-index: 3;
+  display: flex; justify-content: space-between; gap: 32px;
+  max-width: var(--container); margin: 0 auto; padding: 0 32px;
+  color: rgba(255,255,255,0.78); font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.cta-float { animation: bob 4.8s ease-in-out infinite; }
+@keyframes bob { 0%,100%{ transform: translateY(0);} 50% { transform: translateY(-5px);} }
+
+/* —— Centerpiece "AL CENTRO CI SEI TU" —— */
+.center {
+  background: var(--white);
+  text-align: center;
+  padding: 72px 0;
+  position: relative;
+}
+.center .kicker {
+  font-size: 0.78rem; letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--sea); display: inline-flex; align-items: center; gap: 14px;
+  margin-bottom: 28px;
+}
+.center .kicker::before, .center .kicker::after { content: ''; width: 38px; height: 1px; background: var(--sea); }
+.center h2 {
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  max-width: 920px; margin: 0 auto 22px; text-wrap: balance;
+  font-weight: 400;
+}
+.center h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.center p.pitch {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  color: var(--muted);
+  max-width: 760px;
+  margin: 0 auto 44px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.center-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* —— 3 Pillars —— */
+.pillars { padding: 72px 0; background: var(--sky); }
+.pillars-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
+.pillars-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.pillars-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.pillar-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+}
+.pillar {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  padding: 0;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s ease, border-color .55s ease;
+}
+.pillar:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(74,144,217,.35); }
+.pillar .roman {
+  background: var(--navy);
+  color: white;
+  padding: 28px 32px 22px;
+  display: flex; align-items: baseline; gap: 14px;
+}
+.pillar .roman .num { font-family: var(--serif); font-style: italic; font-size: 2rem; line-height: 1; color: var(--sand); }
+.pillar .roman .tag { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; opacity: .85; }
+.pillar .body { padding: 30px 32px 36px; flex: 1; display: flex; flex-direction: column; }
+.pillar h3 { font-size: 1.55rem; margin-bottom: 8px; }
+.pillar h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.pillar .sub-h { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1rem; margin-bottom: 18px; }
+.pillar p { color: var(--muted); font-size: 0.96rem; line-height: 1.7; flex: 1; }
+.pillar .more {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 26px; color: var(--navy); font-size: 0.86rem; font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.pillar .more .arrow { transition: transform .3s ease; }
+.pillar:hover .more .arrow { transform: translateX(5px); }
+
+/* —— Le Terre del Buon Vivere —— */
+.terre {
+  padding: 72px 0;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.terre-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+  margin-bottom: 56px;
+}
+.terre-head h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
+.terre-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.terre-head .stretch {
+  font-family: var(--serif); font-style: italic; color: var(--sea);
+  font-size: 1.4rem; letter-spacing: 0.04em;
+  display: inline-flex; align-items: center; gap: 18px;
+  margin-bottom: 18px;
+}
+.terre-head .stretch::before, .terre-head .stretch::after {
+  content: ''; width: 38px; height: 1px; background: var(--sea);
+}
+.terre-head p {
+  color: var(--muted); font-size: 1.05rem; line-height: 1.75;
+}
+
+.terre-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+.terre-col {
+  background: var(--sky);
+  border-radius: var(--radius-lg);
+  padding: 36px 38px 38px;
+  position: relative;
+  overflow: hidden;
+}
+.terre-col.entro { background: var(--sand); }
+.terre-col h3 {
+  font-size: 1.4rem; margin-bottom: 6px;
+}
+.terre-col h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.terre-col .lbl {
+  font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 22px;
+}
+.terre-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column;
+}
+.terre-list li {
+  padding: 16px 0; border-top: 1px solid rgba(27,58,107,.14);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+}
+.terre-list li:first-child { border-top: none; }
+.terre-list .place {
+  font-family: var(--serif); font-style: italic; font-size: 1.18rem; color: var(--navy);
+}
+.terre-list .note {
+  font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  text-align: right; flex-shrink: 0;
+}
+
+/* —— Booking strip —— */
+.booking {
+  padding: 72px 0;
+  background: var(--navy);
+  color: white;
+  position: relative; overflow: hidden;
+}
+.booking::before {
+  content: ''; position: absolute; right: -8%; top: -10%;
+  width: 520px; height: 520px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,230,200,.18) 0%, transparent 65%);
+  filter: blur(20px);
+}
+.booking-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: center; position: relative; }
+.booking h2 { color: white; font-size: clamp(2rem, 3.6vw, 3.2rem); }
+.booking h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
+.booking .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 16px; }
+.booking p { color: rgba(255,255,255,.78); font-size: 1.05rem; line-height: 1.75; margin-top: 22px; max-width: 540px; }
+
+.book-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius-lg);
+  padding: 36px 38px;
+}
+.book-card h4 {
+  color: white; font-family: var(--serif); font-style: italic; font-size: 1.4rem;
+  margin-bottom: 22px; font-weight: 400;
+}
+.book-card .step {
+  display: grid; grid-template-columns: 40px 1fr; gap: 18px;
+  padding: 18px 0; border-top: 1px solid rgba(255,255,255,.10);
+  align-items: start;
+}
+.book-card .step:first-of-type { border-top: none; }
+.book-card .step .n {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--sand); color: var(--navy);
+  display: grid; place-items: center;
+  font-family: var(--serif); font-style: italic; font-size: 1rem; font-weight: 500;
+  margin-top: 2px;
+}
+.book-card .step strong { display: block; color: white; font-weight: 500; font-size: 0.98rem; margin-bottom: 4px; }
+.book-card .step span { color: rgba(255,255,255,.7); font-size: 0.88rem; line-height: 1.6; }
+.book-card .cta {
+  margin-top: 22px;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 14px 24px;
+  background: var(--sand);
+  color: var(--navy);
+  border-radius: 999px;
+  font-weight: 500; font-size: 0.92rem; letter-spacing: 0.02em;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.book-card .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(245,230,200,.28); }
+
+/* —— Membership teaser —— */
+.member {
+  padding: 72px 0;
+  background: var(--sand);
+  position: relative; overflow: hidden;
+}
+.member::before, .member::after {
+  content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; filter: blur(80px); opacity: .55; z-index: 0;
+}
+.member::before { left: -160px; top: -160px; background: var(--sky); }
+.member::after { right: -160px; bottom: -160px; background: rgba(74,144,217,.30); }
+.member-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.member-inner .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 16px; }
+.member-inner h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.member-inner p { color: var(--ink); font-size: 1.05rem; line-height: 1.75; margin: 22px 0 28px; max-width: 520px; opacity: .85; }
+.member-bens { list-style: none; display: grid; gap: 14px; margin-bottom: 32px; }
+.member-bens li {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.96rem; color: var(--navy);
+}
+.member-bens .dot {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--navy); color: var(--sand);
+  display: grid; place-items: center;
+  font-family: var(--serif); font-style: italic; font-size: 0.78rem; flex-shrink: 0;
+}
+.member-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px 42px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+.member-card .ribbon {
+  position: absolute; top: -14px; left: 42px;
+  background: var(--navy); color: white;
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+}
+.member-card h3 { font-size: 1.6rem; margin: 14px 0 6px; }
+.member-card h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.member-card .lbl { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+.member-card .num {
+  font-family: var(--serif); font-size: 2.6rem; color: var(--navy); line-height: 1; font-weight: 400;
+}
+.member-card .num em { font-style: italic; color: var(--sea); font-size: .55em; margin-left: 6px; }
+.member-card .feat {
+  display: flex; flex-direction: column; gap: 12px;
+  margin: 22px 0 28px; padding: 22px 0 0; border-top: 1px solid var(--line);
+}
+.member-card .feat .row { display: grid; grid-template-columns: 22px 1fr; gap: 12px; font-size: 0.92rem; color: var(--ink); align-items: start; }
+.member-card .feat .row .tick { color: var(--sea); }
+
+/* —— Closing —— */
+.closing {
+  padding: 72px 0; background: var(--white); text-align: center;
+}
+.closing-inner { max-width: 760px; margin: 0 auto; }
+.closing h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.closing p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 22px 0 36px; }
+
+@media (max-width: 980px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+  .terre-head, .terre-cols, .booking-grid, .member-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">m</span>
+      <span class="brand-name">modi<em>di</em>vivere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="servizi.html">I servizi</a></li>
+      <li><a href="membership.html">La Membership</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+    </ul>
+    <a href="contatti.html" class="nav-cta">
+      Prenota i servizi
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ——— Hero ——— -->
+<header class="hero" data-screen-label="01 Home — Hero">
+  <div class="hero-media" data-parallax>
+    <img class="hero-img"
+         src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=2000&q=80&auto=format&fit=crop"
+         alt="La costa tra Liguria e Toscana, da Portofino a Viareggio" />
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <span class="kicker reveal">I servizi esclusivi · modidivivere</span>
+      <h1 class="reveal delay-1">Al centro<br>ci sei <span class="you">tu</span><br>e i tuoi modi di vivere.</h1>
+      <p class="sub reveal delay-2">
+        Spazio e tempo al benessere — il mosaico del Buon Vivere.
+        <b>Tailored Lifestyle</b>
+      </p>
+      <div class="hero-actions reveal delay-3">
+        <a href="contatti.html" class="btn btn-primary cta-float">
+          Descrivi cosa cerchi
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contatti.html" class="btn btn-ghost">Contattaci</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <span>Da Portofino a Viareggio</span>
+    <span>Liguria · Toscana · Entroterra</span>
+  </div>
+</header>
+
+<!-- ——— Centerpiece ——— -->
+<section class="center" data-screen-label="01 Home — Manifesto">
+  <div class="container">
+    <span class="kicker reveal">Il nostro manifesto</span>
+    <h2 class="reveal delay-1">Creiamo spazi, servizi e momenti<br>per <em>customizzare il tuo stile di vita.</em></h2>
+    <p class="pitch reveal delay-2">
+      Non vendiamo pacchetti, non confezioniamo soggiorni standard.
+      Ascoltiamo cosa cerchi — una giornata, una settimana, una stagione —
+      e cuciamo intorno a te una rete di luoghi, persone e attenzioni
+      che diventano il tuo modo di vivere il territorio.
+    </p>
+    <div class="center-actions reveal delay-3">
+      <a href="contatti.html" class="btn btn-primary">Descrivi cosa cerchi</a>
+      <a href="servizi.html" class="btn btn-ghost">Esplora i servizi</a>
+    </div>
+  </div>
+</section>
+
+<!-- ——— 3 Pillars ——— -->
+<section class="pillars" data-screen-label="01 Home — Servizi esclusivi">
+  <div class="container">
+    <div class="pillars-head">
+      <span class="kicker reveal">I servizi esclusivi</span>
+      <h2 class="reveal delay-1">Tre pilastri,<br>una sola <em>cura del dettaglio.</em></h2>
+    </div>
+
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <div class="roman">
+          <span class="num">i.</span>
+          <span class="tag">Il tuo assistente locale</span>
+        </div>
+        <div class="body">
+          <h3>Il Concierge <em>Territoriale</em></h3>
+          <div class="sub-h">Una voce sola, sempre la stessa.</div>
+          <p>Un referente personale che vive il territorio, conosce i suoi tempi, le sue persone e i suoi segreti. Risponde alle tue richieste — anche le più insolite — e organizza tutto, dietro le quinte, perché tu debba solo arrivare.</p>
+          <a href="servizi.html#concierge" class="more">
+            Conosci il concierge <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar reveal delay-1">
+        <div class="roman">
+          <span class="num">ii.</span>
+          <span class="tag">Liguria · Toscana</span>
+        </div>
+        <div class="body">
+          <h3>La Rete <em>Territoriale</em></h3>
+          <div class="sub-h">Partner selezionati, accordi riservati.</div>
+          <p>Dimore, ristoranti, vignaioli, guide, barche, terme, atelier. Una rete costruita persona per persona, in dodici anni di lavoro sul campo — tra il Golfo del Tigullio e la Versilia, dalle Cinque Terre alla Garfagnana.</p>
+          <a href="servizi.html#rete" class="more">
+            Esplora la rete <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar reveal delay-2">
+        <div class="roman">
+          <span class="num">iii.</span>
+          <span class="tag">Prenota in un gesto</span>
+        </div>
+        <div class="body">
+          <h3>Il Booking <em>dei Servizi</em></h3>
+          <div class="sub-h">Una sola piattaforma, tutta la costa.</div>
+          <p>Dimore, tavoli, esperienze, transfer privati, benessere, ormeggi: prenota i servizi della rete con un solo accesso. Disponibilità in tempo reale, condizioni dedicate ai membri, fatturazione unica.</p>
+          <a href="contatti.html" class="more">
+            Prenota i servizi <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Le Terre del Buon Vivere ——— -->
+<section class="terre" data-screen-label="01 Home — Le terre">
+  <div class="container">
+    <div class="terre-head">
+      <div>
+        <span class="stretch reveal">Da Portofino a Viareggio</span>
+        <h2 class="reveal delay-1">Le Terre <em>del Buon Vivere.</em></h2>
+      </div>
+      <p class="reveal delay-2">Centocinquanta chilometri di costa e di entroterra, un mosaico che cambia colore a ogni curva. Operiamo lungo questa fascia, in piccoli numeri, perché ogni borgo, ogni vigna, ogni sentiero merita una conoscenza vera.</p>
+    </div>
+
+    <div class="terre-cols">
+      <div class="terre-col reveal">
+        <h3>Le <em>coste.</em></h3>
+        <div class="lbl">Sei tratti, una sola distesa</div>
+        <ul class="terre-list">
+          <li><span class="place">Golfo del Tigullio</span><span class="note">Portofino · Camogli</span></li>
+          <li><span class="place">Cinque Terre</span><span class="note">Levante ligure</span></li>
+          <li><span class="place">Golfo dei Poeti</span><span class="note">Portovenere · Lerici</span></li>
+          <li><span class="place">Val di Magra</span><span class="note">Foce e litorale</span></li>
+          <li><span class="place">Riviera Apuana</span><span class="note">Carrara · Massa</span></li>
+          <li><span class="place">Versilia</span><span class="note">Forte dei Marmi · Viareggio</span></li>
+        </ul>
+      </div>
+
+      <div class="terre-col entro reveal delay-1">
+        <h3>L'<em>entroterra.</em></h3>
+        <div class="lbl">Quattro valli da scoprire</div>
+        <ul class="terre-list">
+          <li><span class="place">Val di Vara</span><span class="note">Borghi bio</span></li>
+          <li><span class="place">Val di Magra</span><span class="note">Sarzana · Castelnuovo</span></li>
+          <li><span class="place">Lunigiana</span><span class="note">Castelli e pievi</span></li>
+          <li><span class="place">Garfagnana</span><span class="note">Foreste · Tartufi</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Booking dei servizi ——— -->
+<section class="booking" data-screen-label="01 Home — Booking">
+  <div class="container">
+    <div class="booking-grid">
+      <div>
+        <span class="kicker reveal">Il booking dei servizi</span>
+        <h2 class="reveal delay-1">Prenota i servizi<br>in <em>tre passaggi.</em></h2>
+        <p class="reveal delay-2">Un'unica piattaforma riservata ai membri: dimore curate, ristoranti con menù dedicati, esperienze in numeri piccoli, transfer privati, ormeggi, benessere. Tutto a portata di un solo accesso.</p>
+      </div>
+
+      <div class="book-card reveal delay-2">
+        <h4>Come funziona</h4>
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <strong>Descrivi cosa cerchi</strong>
+            <span>Una conversazione con il tuo concierge — al telefono o per iscritto — definisce il perimetro.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <strong>Ricevi la proposta riservata</strong>
+            <span>Entro 48 ore una selezione cucita su misura, con condizioni dedicate ai membri della rete.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div>
+            <strong>Prenota in un gesto</strong>
+            <span>Conferma con un click, fatturazione unica. Il concierge resta a disposizione per ogni modifica.</span>
+          </div>
+        </div>
+        <a href="contatti.html" class="cta">
+          Prenota i servizi
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Membership teaser ——— -->
+<section class="member" data-screen-label="01 Home — Membership">
+  <div class="container">
+    <div class="member-inner">
+      <div>
+        <span class="kicker reveal">La membership</span>
+        <h2 class="reveal delay-1">Una rete <em>su accreditamento.</em></h2>
+        <p class="reveal delay-2">La nostra rete è piccola e selettiva: per garantirne la qualità lavoriamo per accreditamento. La membership ti apre l'accesso al concierge dedicato, alle condizioni riservate dei partner e all'agenda di esperienze private.</p>
+
+        <ul class="member-bens reveal delay-2">
+          <li><span class="dot">i</span>Concierge personale, sette giorni su sette</li>
+          <li><span class="dot">ii</span>Condizioni riservate sull'intera rete</li>
+          <li><span class="dot">iii</span>Agenda di esperienze private dei membri</li>
+          <li><span class="dot">iv</span>Fatturazione unica · resoconto trimestrale</li>
+        </ul>
+
+        <div class="reveal delay-3" style="display:flex; gap: 14px; flex-wrap: wrap;">
+          <a href="membership.html" class="btn btn-primary">Scopri la Membership</a>
+          <a href="contatti.html#accreditamento" class="btn btn-ghost">Richiedi accreditamento</a>
+        </div>
+      </div>
+
+      <aside class="member-card reveal delay-2">
+        <div class="ribbon">Membership 2026</div>
+        <h3>Membri <em>attivi</em></h3>
+        <div class="lbl">Stagione corrente</div>
+        <div class="num">142<em>famiglie</em></div>
+        <div class="feat">
+          <div class="row"><span class="tick">✓</span><span>Concierge dedicato, risposta entro 4h</span></div>
+          <div class="row"><span class="tick">✓</span><span>Accesso ai 47 partner della rete</span></div>
+          <div class="row"><span class="tick">✓</span><span>Agenda esperienze private (mensile)</span></div>
+          <div class="row"><span class="tick">✓</span><span>Invito alle serate dei membri</span></div>
+        </div>
+        <a href="membership.html" class="btn btn-ghost" style="width:100%; justify-content:center;">Vedi i piani</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Closing ——— -->
+<section class="closing">
+  <div class="container">
+    <div class="closing-inner">
+      <span class="kicker reveal" style="color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;">Iniziamo</span>
+      <h2 class="reveal delay-1" style="margin-top: 14px;">Raccontaci <em>i tuoi modi di vivere.</em></h2>
+      <p class="reveal delay-2">Una conversazione è il punto di partenza. Da lì il concierge costruisce, in pochi giorni, una proposta su misura — riservata e senza impegno.</p>
+      <div class="reveal delay-3" style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
+        <a href="contatti.html" class="btn btn-primary cta-float">
+          Descrivi cosa cerchi
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contatti.html" class="btn btn-ghost">Contattaci</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Footer ——— -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="color:white;">
+          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
+          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        </a>
+        <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
+      </div>
+      <div>
+        <h4>Naviga</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">I servizi</a></li>
+          <li><a href="membership.html">La Membership</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Accesso</h4>
+        <ul>
+          <li><a href="contatti.html#accreditamento">Richiesta accreditamento</a></li>
+          <li><a href="membership.html#login">Login membri</a></li>
+          <li><a href="contatti.html">Descrivi cosa cerchi</a></li>
+          <li><a href="contatti.html">Prenota i servizi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Via al Porto, 8</li>
+          <li>16032 Camogli (GE)</li>
+          <li>+39 0185 770 412</li>
+          <li>studio@modidivivere.it</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 modidivivere — P.IVA 02478910103</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+  // Auto-print once fonts + layout are ready
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e) {}
+    // Wait for hero image
+    const img = document.querySelector('.hero-img');
+    if (img && !img.complete) {
+      await new Promise(res => { img.addEventListener('load', res, { once: true }); img.addEventListener('error', res, { once: true }); });
+    }
+    setTimeout(() => window.print(), 500);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi siamo — modidivivere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
+</style>
+
+
+<style>
+/* —— Tweak modes — Stagione (palette/imagery) —— */
+body[data-stagione="estate"]   { /* default — bright sky/sea, sand */ }
+body[data-stagione="autunno"] {
+  --sky: #F8E8D4;
+  --sand: #E8C9A0;
+  --sand-deep: #C99A6A;
+  --sea: #B8763C;
+  --navy: #5A2E18;
+  --navy-soft: #7A4528;
+  --ink: #3A1E0E;
+  --muted: #8A6A52;
+  --line: rgba(90, 46, 24, 0.14);
+}
+body[data-stagione="inverno"] {
+  --sky: #E8EEF4;
+  --sand: #D8DEE6;
+  --sand-deep: #B8C2CE;
+  --sea: #6B7B96;
+  --navy: #1F2933;
+  --navy-soft: #38444F;
+  --ink: #14181E;
+  --muted: #6B7280;
+  --line: rgba(31, 41, 51, 0.14);
+}
+/* Seasonal hue overlay on hero/team imagery */
+body[data-stagione="autunno"] .cs-hero-visual .frame img,
+body[data-stagione="autunno"] .member-img img {
+  filter: sepia(0.18) saturate(1.05) hue-rotate(-8deg) brightness(0.96);
+}
+body[data-stagione="inverno"] .cs-hero-visual .frame img,
+body[data-stagione="inverno"] .member-img img {
+  filter: saturate(0.55) brightness(0.95) contrast(1.02);
+}
+body[data-stagione="autunno"] .cs-hero,
+body[data-stagione="autunno"] .story  { background: linear-gradient(180deg, var(--sky) 0%, white 100%); }
+body[data-stagione="inverno"] .cs-hero,
+body[data-stagione="inverno"] .story  { background: linear-gradient(180deg, var(--sky) 0%, white 100%); }
+body[data-stagione="autunno"] .cs-closing { background: var(--sand); }
+body[data-stagione="inverno"] .cs-closing { background: var(--sand); }
+
+/* —— Tweak modes — Densità (whitespace/scale) —— */
+body[data-densita="editoriale"] {
+  --pad-section: 72px;
+  --hero-img-ar: 3 / 4;
+  --member-ar: 3 / 4;
+  --serif-scale: 1.12;
+}
+body[data-densita="attuale"] {
+  --pad-section: 72px;
+  --hero-img-ar: 4 / 5;
+  --member-ar: 4 / 5;
+  --serif-scale: 1;
+}
+body[data-densita="compatto"] {
+  --pad-section: 72px;
+  --hero-img-ar: 16 / 11;
+  --member-ar: 1 / 1;
+  --serif-scale: 0.88;
+}
+.cs-hero    { padding: 160px 0 100px; }
+.values, .story, .team { padding: var(--pad-section, 72px) 0; }
+.cs-closing { padding: var(--pad-section, 72px) 0; }
+.cs-hero-visual .frame { aspect-ratio: var(--hero-img-ar, 4 / 5); }
+.member-img { aspect-ratio: var(--member-ar, 4 / 5); }
+.cs-hero h1, .values-head h2, .story-head h2, .team-head h2, .cs-closing h2 {
+  font-size: calc(clamp(2rem, 3.6vw, 3.2rem) * var(--serif-scale, 1));
+}
+.cs-hero h1 {
+  font-size: calc(clamp(2.6rem, 5.4vw, 4.6rem) * var(--serif-scale, 1));
+}
+/* Compact: tighter card padding & gaps */
+body[data-densita="compatto"] .value-card { padding: 24px 22px; }
+body[data-densita="compatto"] .values-grid { gap: 14px; }
+body[data-densita="compatto"] .team-grid { gap: 18px; }
+body[data-densita="compatto"] .member-body { padding: 18px 20px 22px; }
+body[data-densita="compatto"] .t-row { padding: 16px 0; }
+/* Editorial: more breathing room */
+body[data-densita="editoriale"] .value-card { padding: 48px 40px; }
+body[data-densita="editoriale"] .values-grid { gap: 32px; }
+body[data-densita="editoriale"] .team-grid { gap: 36px; }
+body[data-densita="editoriale"] .t-row { padding: 38px 0; }
+
+/* —— Tweak — Voce (subtle stylistic shift) —— */
+body[data-voce="amici"] {
+  --serif: 'Playfair Display', Georgia, serif;
+}
+body[data-voce="amici"] h1 em,
+body[data-voce="amici"] h2 em,
+body[data-voce="amici"] h3 em { letter-spacing: 0.01em; }
+/* Voce shows/hides parallel copy versions */
+.voice-studio { display: inline; }
+.voice-amici  { display: none; }
+body[data-voce="amici"] .voice-studio { display: none; }
+body[data-voce="amici"] .voice-amici  { display: inline; }
+
+/* —— Chi siamo page —— */
+.cs-hero {
+  padding: 150px 0 80px;
+  background: linear-gradient(180deg, var(--sky) 0%, white 100%);
+  position: relative;
+  overflow: hidden;
+}
+.cs-hero::before {
+  content: '';
+  position: absolute;
+  top: 60px; right: -160px;
+  width: 560px; height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,144,217,0.16) 0%, transparent 70%);
+  filter: blur(20px);
+}
+.cs-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+.cs-hero h1 {
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  margin: 22px 0 28px;
+}
+.cs-hero h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.cs-hero p.lead {
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  max-width: 540px;
+  margin-bottom: 12px;
+}
+.cs-hero p.lead + p.lead { margin-top: 18px; }
+
+.cs-hero-visual {
+  position: relative;
+}
+.cs-hero-visual .frame {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-md);
+}
+.cs-hero-visual .frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+.cs-hero-visual:hover .frame img { transform: scale(1.04); }
+.cs-hero-visual .since {
+  position: absolute;
+  bottom: -28px; left: -28px;
+  background: white;
+  padding: 22px 26px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.cs-hero-visual .since .num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1;
+}
+.cs-hero-visual .since .lbl {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* —— Manifesto / valori —— */
+.values {
+  padding: 72px 0;
+  background: white;
+}
+.values-head { max-width: 720px; margin-bottom: 48px; }
+.values-head h2 { margin-top: 14px; }
+.values-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.value-card {
+  padding: 36px 32px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(74, 144, 217, 0.3);
+}
+.value-card .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--sea);
+  margin-bottom: 18px;
+}
+.value-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+.value-card h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.value-card p {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+/* —— Storia (timeline) —— */
+.story {
+  padding: 72px 0;
+  background: var(--sky);
+}
+.story-head { text-align: center; margin-bottom: 52px; max-width: 680px; margin-left: auto; margin-right: auto; }
+.story-head h2 { margin-top: 14px; }
+.story-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+
+.timeline {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 80px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--sea) 8%, var(--sea) 92%, transparent);
+  opacity: 0.4;
+}
+.t-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  padding: 28px 0;
+  position: relative;
+}
+.t-row .year {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--navy);
+  text-align: right;
+  padding-right: 12px;
+}
+.t-row::before {
+  content: '';
+  position: absolute;
+  left: 76px; top: 38px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--sand);
+  border: 2px solid var(--navy);
+  z-index: 1;
+}
+.t-row .body {
+  padding-left: 18px;
+}
+.t-row .body h4 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.t-row .body p {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+/* —— Team —— */
+.team {
+  padding: 72px 0;
+  background: white;
+}
+.team-head { text-align: center; margin-bottom: 48px; max-width: 680px; margin-left: auto; margin-right: auto; }
+.team-head h2 { margin-top: 14px; }
+.team-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.member {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.member:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.member-img {
+  aspect-ratio: 4 / 5;
+  background: var(--sky);
+  position: relative;
+  overflow: hidden;
+}
+.member-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+.member:hover .member-img img { transform: scale(1.05); }
+.member-body { padding: 26px 28px 30px; }
+.member-body .role {
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sea);
+  margin-bottom: 8px;
+}
+.member-body h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.member-body p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* —— Press strip —— */
+.press {
+  padding: 60px 0;
+  background: var(--navy);
+  color: white;
+}
+.press-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.press-inner .lbl {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--sand);
+}
+.press-inner .marks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.press-inner .marks span {
+  letter-spacing: 0.04em;
+  transition: color 0.3s ease;
+}
+.press-inner .marks span:hover { color: white; }
+.press-inner .marks span.italic {
+  font-style: italic;
+  color: rgba(245, 230, 200, 0.85);
+}
+
+/* —— Closing —— */
+.cs-closing {
+  padding: 72px 0;
+  background: var(--sand);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cs-closing::before, .cs-closing::after {
+  content: '';
+  position: absolute;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  z-index: 0;
+}
+.cs-closing::before { left: -160px; top: -180px; background: var(--sky); }
+.cs-closing::after  { right: -160px; bottom: -180px; background: rgba(74, 144, 217, 0.25); }
+.cs-closing-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+.cs-closing h2 { margin-bottom: 22px; }
+.cs-closing h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.cs-closing p {
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  opacity: 0.85;
+}
+
+@media (max-width: 980px) {
+  .cs-hero-grid { grid-template-columns: 1fr; gap: 56px; }
+  .cs-hero-visual .since { left: 0; }
+  .values-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .press-inner { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 560px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .timeline::before { left: 60px; }
+  .t-row { grid-template-columns: 60px 1fr; gap: 24px; }
+  .t-row::before { left: 56px; }
+}
+</style>
+</head>
+<body data-stagione="estate" data-voce="studio" data-densita="attuale">
+
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">m</span>
+      <span class="brand-name">modi<em>di</em>vivere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chi-siamo.html" class="active">Chi siamo</a></li>
+      <li><a href="servizi.html">I servizi</a></li>
+      <li><a href="membership.html">La Membership</a></li>
+      <li><a href="contatti.html">Contatti</a></li>
+    </ul>
+    <a href="contatti.html" class="nav-cta">
+      Prenota i servizi
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ——— Hero ——— -->
+<header class="cs-hero" data-screen-label="04 Chi siamo — Hero">
+  <div class="container">
+    <div class="cs-hero-grid">
+      <div>
+        <span class="eyebrow reveal">Chi siamo</span>
+        <h1 class="reveal delay-1"><span class="voice-studio">Tre liguri,<br><em>una sola ossessione.</em></span><span class="voice-amici">Tre amici di costa,<br><em>una sola passione.</em></span></h1>
+        <p class="lead reveal delay-2"><span class="voice-studio">Modi di Vivere è uno studio di concierge nato a Camogli nel 2014. Non siamo un'agenzia, non vendiamo pacchetti — disegniamo soggiorni, uno alla volta, per famiglie e coppie che vogliono vivere la nostra costa con la lentezza che merita.</span><span class="voice-amici">Modi di Vivere è nato a Camogli nel 2014. Non siamo un'agenzia e non vendiamo pacchetti — ti disegniamo una settimana addosso, una alla volta, perché tu possa vivere la nostra costa con calma vera.</span></p>
+        <p class="lead reveal delay-3"><span class="voice-studio">Ci muoviamo in piccoli numeri — al massimo dodici ospiti a settimana — perché ogni itinerario richiede tempo, conversazione, una visita di persona prima di firmarlo.</span><span class="voice-amici">Ci teniamo piccoli — al massimo dodici ospiti a settimana — perché ogni viaggio chiede tempo, una chiacchierata vera, e una visita di persona prima di darti la nostra parola.</span></p>
+      </div>
+      <div class="cs-hero-visual reveal delay-2">
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1000&q=80&auto=format&fit=crop" alt="Camogli, sede dello studio">
+        </div>
+        <div class="since">
+          <div class="num">2014</div>
+          <span class="lbl">Studio fondato a Camogli</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Wave divider -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
+
+<!-- ——— Valori ——— -->
+<section class="values" data-screen-label="04 Chi siamo — Valori">
+  <div class="container">
+    <div class="values-head">
+      <span class="eyebrow reveal">Il nostro modo</span>
+      <h2 class="reveal delay-1">Quattro convinzioni,<br><em>che non negoziamo.</em></h2>
+    </div>
+    <div class="values-grid">
+      <article class="value-card reveal">
+        <div class="num">i.</div>
+        <h3>Conoscere <em>di persona.</em></h3>
+        <p><span class="voice-studio">Ogni dimora che proponiamo l'abbiamo abitata. Ogni tavolo l'abbiamo provato. Ogni sentiero l'abbiamo camminato — in più stagioni, in più condizioni.</span><span class="voice-amici">Ogni casa che ti proponiamo l'abbiamo dormita. Ogni tavolo l'abbiamo provato. Ogni sentiero l'abbiamo camminato — in tutte le stagioni.</span></p>
+      </article>
+      <article class="value-card reveal delay-1">
+        <div class="num">ii.</div>
+        <h3>Numeri <em>piccoli.</em></h3>
+        <p><span class="voice-studio">Massimo dodici ospiti a settimana. È un limite scelto: ci permette di rispondere personalmente, di esserci se serve, di non delegare il dettaglio.</span><span class="voice-amici">Massimo dodici ospiti a settimana. È una scelta: così ti rispondiamo noi, ci siamo se serve, e non passiamo il dettaglio a nessun altro.</span></p>
+      </article>
+      <article class="value-card reveal delay-2">
+        <div class="num">iii.</div>
+        <h3>Onestà <em>nei consigli.</em></h3>
+        <p><span class="voice-studio">Vi diciamo quando un posto non è la stagione giusta, quando un ristorante è cambiato in peggio, quando vale la pena spostarsi di un giorno per un'occasione rara.</span><span class="voice-amici">Te lo diciamo quando un posto non è la stagione giusta, quando un ristorante è cambiato in peggio, quando vale la pena spostarsi di un giorno per qualcosa di raro.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Storia ——— -->
+<section class="story" data-screen-label="04 Chi siamo — Storia">
+  <div class="container">
+    <div class="story-head">
+      <span class="eyebrow reveal">La nostra storia</span>
+      <h2 class="reveal delay-1">Dodici anni,<br><em>un passo alla volta.</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="t-row reveal">
+        <div class="year">2014</div>
+        <div class="body">
+          <h4>L'inizio, in due stanze sul porto</h4>
+          <p>Carlotta e Davide aprono lo studio in via al Porto, a Camogli. Il primo anno: undici famiglie, tutto scritto a mano su quaderni Moleskine.</p>
+        </div>
+      </div>
+      <div class="t-row reveal">
+        <div class="year">2017</div>
+        <div class="body">
+          <h4>Il primo menù dedicato</h4>
+          <p>Una collaborazione con la trattoria U Bansin di Vernazza. Da lì nasce l'idea dei tavoli su misura — oggi oltre duecento ristoranti.</p>
+        </div>
+      </div>
+      <div class="t-row reveal">
+        <div class="year">2019</div>
+        <div class="body">
+          <h4>Si unisce Riccardo</h4>
+          <p>Geologo e guida del Parco delle Cinque Terre, porta i sentieri privati e le vendemmie tra le terrazze. Le esperienze diventano una nostra firma.</p>
+        </div>
+      </div>
+      <div class="t-row reveal">
+        <div class="year">2022</div>
+        <div class="body">
+          <h4>Studio rinnovato sul molo</h4>
+          <p>Lo studio si trasferisce in una casa di pescatori restaurata. Una sala accoglienza con tavolo grande dove disegniamo gli itinerari con i nostri ospiti.</p>
+        </div>
+      </div>
+      <div class="t-row reveal">
+        <div class="year">2026</div>
+        <div class="body">
+          <h4>Oggi</h4>
+          <p>Trecento famiglie servite, quarantasette dimore curate, una rete di artigiani — pescatori, vignaioli, cuochi — che chiamiamo per nome.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Team ——— -->
+<section class="team" data-screen-label="04 Chi siamo — Team">
+  <div class="container">
+    <div class="team-head">
+      <span class="eyebrow reveal">Lo studio</span>
+      <h2 class="reveal delay-1">Le persone <em>dietro ogni viaggio.</em></h2>
+    </div>
+    <div class="team-grid">
+      <article class="member reveal">
+        <div class="member-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80&auto=format&fit=crop" alt="Carlotta Risso">
+        </div>
+        <div class="member-body">
+          <div class="role">Fondatrice · Direzione</div>
+          <h3>Carlotta Risso</h3>
+          <p>Cresciuta tra Camogli e Genova, ha lavorato dieci anni nell'hôtellerie d'autore prima di aprire lo studio. Cura le dimore e l'accoglienza.</p>
+        </div>
+      </article>
+      <article class="member reveal delay-1">
+        <div class="member-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop" alt="Davide Bertolone">
+        </div>
+        <div class="member-body">
+          <div class="role">Co-fondatore · Tavoli</div>
+          <h3>Davide Bertolone</h3>
+          <p>Sommelier AIS, ha cucinato per tre anni alla Locanda Cervo. Cura la rete dei ristoranti e scrive a mano ogni menù dedicato.</p>
+        </div>
+      </article>
+      <article class="member reveal delay-2">
+        <div class="member-img">
+          <img src="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?w=800&q=80&auto=format&fit=crop" alt="Riccardo Tornaghi">
+        </div>
+        <div class="member-body">
+          <div class="role">Esperienze · Guida</div>
+          <h3>Riccardo Tornaghi</h3>
+          <p>Geologo e guida ufficiale del Parco delle Cinque Terre. Conduce i trekking d'autore, le vendemmie e le uscite in vela al tramonto.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Press ——— -->
+<section class="press">
+  <div class="container">
+    <div class="press-inner">
+      <span class="lbl reveal">Hanno parlato di noi</span>
+      <div class="marks reveal delay-1">
+        <span>Condé Nast Traveller</span>
+        <span class="italic">La Repubblica</span>
+        <span>Travel + Leisure</span>
+        <span class="italic">Dove</span>
+        <span>Monocle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Closing ——— -->
+<section class="cs-closing">
+  <div class="container">
+    <div class="cs-closing-inner">
+      <span class="eyebrow reveal">Una conversazione</span>
+      <h2 class="reveal delay-1" style="margin-top: 14px;"><span class="voice-studio">Conoscersi,<br><em>è il primo passo.</em></span><span class="voice-amici">Conoscerci,<br><em>è il primo passo.</em></span></h2>
+      <p class="reveal delay-2"><span class="voice-studio">Scrivete o telefonate. Vi rispondiamo personalmente — di solito Carlotta o Davide — entro 48 ore.</span><span class="voice-amici">Scrivici o chiamaci. Ti risponde uno di noi — di solito Carlotta o Davide — entro 48 ore.</span></p>
+      <div class="reveal delay-3">
+        <a href="contatti.html" class="btn btn-primary cta-float">
+          Inizia il tuo viaggio
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Footer ——— -->
+<footer class="footer on-sand">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="color:white;">
+          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
+          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        </a>
+        <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
+      </div>
+      <div>
+        <h4>Naviga</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">I servizi</a></li>
+          <li><a href="membership.html">La Membership</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Via al Porto, 8</li>
+          <li>16032 Camogli (GE)</li>
+          <li>+39 0185 770 412</li>
+          <li>studio@modidivivere.it</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stagione</h4>
+        <ul>
+          <li>Lunedì — Venerdì</li>
+          <li>9.00 — 19.00</li>
+          <li>Sabato su appuntamento</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 modidivivere — P.IVA 02478910103</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>

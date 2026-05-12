@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descrivi cosa cerchi — modidivivere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
+.contact-page {
+  padding: 130px 0 80px;
+  background: linear-gradient(180deg, var(--sky) 0%, white 60%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.contact-page::before {
+  content: '';
+  position: absolute;
+  top: 100px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,144,217,0.18) 0%, transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+}
+
+.c-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* —— Form column —— */
+.c-form-wrap { max-width: 580px; }
+.c-form-wrap h1 {
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  margin: 18px 0 22px;
+}
+.c-form-wrap h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.c-form-wrap p.lead {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 44px;
+}
+
+.c-form {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-lg);
+  padding: 44px 44px 40px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.c-form .step {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--sea);
+  font-size: 1rem;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.c-form .step::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--sea);
+}
+
+.field { margin-bottom: 26px; }
+.field label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="date"],
+.field input[type="number"],
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--sea);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(74, 144, 217, 0.12);
+}
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+.field input::placeholder, .field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+/* Date field — calendar icon */
+.field.has-icon { position: relative; }
+.field.has-icon .ico {
+  position: absolute;
+  right: 14px; bottom: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* —— Stepper for guests —— */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+.stepper button {
+  width: 48px; height: 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--navy);
+  transition: background 0.2s ease;
+}
+.stepper button:hover { background: var(--sky); }
+.stepper input {
+  flex: 1;
+  border: none;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--navy);
+  background: transparent;
+  padding: 12px 0;
+  -moz-appearance: textfield;
+}
+.stepper input::-webkit-outer-spin-button,
+.stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* —— Checkbox chips —— */
+.chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.chip {
+  position: relative;
+  cursor: pointer;
+}
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+.chip:hover .chip-body { border-color: var(--sea); transform: translateY(-1px); }
+.chip input:checked ~ .chip-body {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: white;
+  box-shadow: 0 6px 16px rgba(27, 58, 107, 0.22);
+}
+.chip-ico {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: var(--navy);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.chip input:checked ~ .chip-body .chip-ico {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+}
+.chip-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.chip-check {
+  margin-left: auto;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  display: grid; place-items: center;
+  transition: all 0.3s ease;
+}
+.chip input:checked ~ .chip-body .chip-check {
+  border-color: var(--sand);
+  background: var(--sand);
+}
+.chip input:checked ~ .chip-body .chip-check svg { opacity: 1; }
+.chip-check svg { opacity: 0; color: var(--navy); transition: opacity 0.2s ease; }
+
+/* —— Submit —— */
+.submit-row {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+.btn-pulse {
+  position: relative;
+  overflow: visible;
+  animation: gentlePulse 3.6s ease-in-out infinite;
+}
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 12px 30px rgba(27, 58, 107, 0.28), 0 0 0 0 rgba(74, 144, 217, 0.4); }
+  50%      { box-shadow: 0 12px 30px rgba(27, 58, 107, 0.28), 0 0 0 14px rgba(74, 144, 217, 0); }
+}
+.privacy-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+.privacy-note svg { flex-shrink: 0; margin-top: 2px; color: var(--sea); }
+
+/* —— Sidebar (illustration) —— */
+.c-side {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.coast-illustration {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(180deg, #B8DCF5 0%, #4A90D9 60%, #1B3A6B 100%);
+  aspect-ratio: 4 / 5;
+}
+.coast-illustration svg { width: 100%; height: 100%; display: block; }
+.coast-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 36px 32px 32px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 36, 68, 0.55) 60%, rgba(15, 36, 68, 0.85) 100%);
+  color: white;
+}
+.coast-overlay .lbl {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.coast-overlay .place {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.coast-overlay .coords {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  opacity: 0.75;
+}
+
+/* Pin animation */
+.pin-group { animation: pinFloat 4s ease-in-out infinite; transform-origin: center bottom; }
+@keyframes pinFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Studio card */
+.studio-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  box-shadow: var(--shadow-sm);
+}
+.studio-card h4 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.studio-card .row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.studio-card .row:last-child { border-bottom: none; }
+.studio-card .ico {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: var(--navy);
+  display: grid; place-items: center;
+  margin-top: 2px;
+}
+.studio-card strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.studio-card span { font-size: 0.95rem; color: var(--navy); }
+
+/* —— Confirmation state —— */
+.c-form.sent .form-body { display: none; }
+.c-form .confirmation {
+  display: none;
+  text-align: center;
+  padding: 28px 8px;
+}
+.c-form.sent .confirmation { display: block; animation: fadeIn 0.6s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.confirmation .badge-ok {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  background: var(--sand);
+  color: var(--navy);
+  display: grid; place-items: center;
+}
+.confirmation h3 { margin-bottom: 12px; }
+.confirmation p { color: var(--muted); margin-bottom: 24px; }
+
+@media (max-width: 980px) {
+  .c-grid { grid-template-columns: 1fr; gap: 56px; }
+  .c-side { position: static; }
+  .c-form { padding: 32px 26px; }
+  .field-row { grid-template-columns: 1fr; }
+  .field-row.three { grid-template-columns: 1fr; }
+  .chips { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">m</span>
+      <span class="brand-name">modi<em>di</em>vivere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="servizi.html">I servizi</a></li>
+      <li><a href="membership.html">La Membership</a></li>
+      <li><a href="contatti.html" class="active">Contatti</a></li>
+    </ul>
+    <a href="contatti.html" class="nav-cta">
+      Prenota i servizi
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-hamburger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main class="contact-page" data-screen-label="03 Contatti">
+  <div class="container">
+    <div class="c-grid">
+
+      <!-- ——— Form column ——— -->
+      <div class="c-form-wrap">
+        <span class="eyebrow reveal">Descrivi cosa cerchi</span>
+        <h1 class="reveal delay-1">Raccontaci<br><em>i tuoi modi di vivere.</em></h1>
+        <p class="lead reveal delay-2">Pochi campi, una conversazione vera. Il tuo concierge ti risponde personalmente entro 48 ore — con una proposta su misura, riservata e senza impegno. <a href="#accreditamento" style="color: var(--sea); text-decoration: underline; text-underline-offset: 3px;">Sei qui per l'accreditamento?</a></p>
+
+        <form class="c-form reveal delay-3" id="contactForm" novalidate>
+          <div class="form-body">
+            <div class="step">i. Chi sei</div>
+            <div class="field-row">
+              <div class="field">
+                <label for="nome">Nome e cognome</label>
+                <input type="text" id="nome" name="nome" placeholder="Es. Elena Brentani" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="elena@esempio.it" required>
+              </div>
+            </div>
+
+            <div class="step" style="margin-top: 8px;">ii. Quando e in quanti</div>
+            <div class="field-row three">
+              <div class="field has-icon">
+                <label for="arrivo">Arrivo</label>
+                <input type="date" id="arrivo" name="arrivo">
+              </div>
+              <div class="field has-icon">
+                <label for="partenza">Partenza</label>
+                <input type="date" id="partenza" name="partenza">
+              </div>
+              <div class="field">
+                <label for="ospiti">Ospiti</label>
+                <div class="stepper">
+                  <button type="button" data-step="-1" aria-label="Diminuisci">−</button>
+                  <input type="number" id="ospiti" name="ospiti" value="2" min="1" max="20">
+                  <button type="button" data-step="1" aria-label="Aumenta">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" style="margin-top: 8px;">iii. Cosa vi farebbe felici</div>
+            <div class="field">
+              <label>Selezionate quanto vi attira</label>
+              <div class="chips">
+                <label class="chip">
+                  <input type="checkbox" name="pref" value="mare">
+                  <span class="chip-body">
+                    <span class="chip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c2 1 4-1 6 0s4 1 6 0 4-1 6 0M2 11c2 1 4-1 6 0s4 1 6 0 4-1 6 0"/></svg></span>
+                    <span class="chip-label">Mare</span>
+                    <span class="chip-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  </span>
+                </label>
+                <label class="chip">
+                  <input type="checkbox" name="pref" value="montagna">
+                  <span class="chip-body">
+                    <span class="chip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18L15 8l-4 7-3-4z"/></svg></span>
+                    <span class="chip-label">Montagna</span>
+                    <span class="chip-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  </span>
+                </label>
+                <label class="chip">
+                  <input type="checkbox" name="pref" value="gastronomia">
+                  <span class="chip-body">
+                    <span class="chip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3v18M5 9c4 0 4-6 0-6M19 3v18M19 21v-9c-3 0-3-9 0-9"/></svg></span>
+                    <span class="chip-label">Gastronomia</span>
+                    <span class="chip-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  </span>
+                </label>
+                <label class="chip">
+                  <input type="checkbox" name="pref" value="cultura">
+                  <span class="chip-body">
+                    <span class="chip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-7h6v7"/></svg></span>
+                    <span class="chip-label">Cultura</span>
+                    <span class="chip-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="step" style="margin-top: 8px;">iv. Una nota libera</div>
+            <div class="field">
+              <label for="note">Raccontateci qualcosa di voi</label>
+              <textarea id="note" name="note" placeholder="Un anniversario, allergie alimentari, ospiti speciali, una vacanza che avete amato in passato..."></textarea>
+            </div>
+
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary btn-pulse">
+                Invia richiesta
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+              <div class="privacy-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>I vostri dati restano nel nostro studio. Risposta personale entro 48 ore, senza impegno.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="confirmation">
+            <div class="badge-ok">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Grazie, abbiamo ricevuto la vostra richiesta.</h3>
+            <p>Riceverete una nostra risposta personale entro 48 ore. <br>Nel frattempo, buona giornata.</p>
+            <button type="button" class="btn btn-ghost" id="resetForm">Invia un'altra richiesta</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ——— Side: illustration + studio ——— -->
+      <aside class="c-side reveal delay-2">
+        <div class="coast-illustration">
+          <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#E8F4FD"/>
+                <stop offset="0.55" stop-color="#B8DCF5"/>
+                <stop offset="1" stop-color="#4A90D9"/>
+              </linearGradient>
+              <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4A90D9"/>
+                <stop offset="1" stop-color="#1B3A6B"/>
+              </linearGradient>
+              <linearGradient id="land" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F5E6C8"/>
+                <stop offset="1" stop-color="#E8D4A8"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Sky -->
+            <rect width="400" height="280" fill="url(#sky)"/>
+            <!-- Sun -->
+            <circle cx="310" cy="100" r="32" fill="#FFFFFF" opacity="0.85"/>
+            <circle cx="310" cy="100" r="48" fill="#FFFFFF" opacity="0.18"/>
+
+            <!-- Distant headlands -->
+            <path d="M0,260 Q60,210 120,235 T240,225 T400,240 L400,290 L0,290 Z" fill="#1B3A6B" opacity="0.32"/>
+            <path d="M0,275 Q80,235 160,255 T320,250 T400,260 L400,300 L0,300 Z" fill="#1B3A6B" opacity="0.22"/>
+
+            <!-- Sea horizon line -->
+            <rect y="280" width="400" height="160" fill="url(#sea)"/>
+            <!-- Wave lines -->
+            <path d="M0,310 Q50,305 100,310 T200,310 T300,310 T400,310" stroke="rgba(255,255,255,0.35)" stroke-width="1.2" fill="none"/>
+            <path d="M0,330 Q50,326 100,330 T200,330 T300,330 T400,330" stroke="rgba(255,255,255,0.25)" stroke-width="1" fill="none"/>
+            <path d="M0,360 Q50,356 100,360 T200,360 T300,360 T400,360" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/>
+            <path d="M0,395 Q50,391 100,395 T200,395 T300,395 T400,395" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+
+            <!-- Foreground promontory (Liguria silhouette) -->
+            <path d="M0,440 L0,250 Q40,200 90,235 Q130,255 170,225 Q200,200 230,235 Q260,260 300,240 Q340,220 380,255 Q400,270 400,290 L400,440 Z" fill="url(#land)"/>
+            <!-- Hills shadow -->
+            <path d="M0,260 Q40,215 90,245 Q130,265 170,235 Q200,210 230,245 L230,260 Q200,232 170,260 Q130,290 90,265 Q40,240 0,275 Z" fill="#1B3A6B" opacity="0.10"/>
+
+            <!-- Tiny houses cluster -->
+            <g transform="translate(140 230)">
+              <rect x="0" y="0" width="14" height="20" fill="#F5E6C8"/>
+              <polygon points="0,0 7,-6 14,0" fill="#1B3A6B"/>
+              <rect x="14" y="-4" width="12" height="24" fill="#FFFFFF"/>
+              <polygon points="14,-4 20,-10 26,-4" fill="#1B3A6B"/>
+              <rect x="26" y="2" width="10" height="18" fill="#F5E6C8"/>
+              <polygon points="26,2 31,-3 36,2" fill="#1B3A6B"/>
+              <rect x="36" y="-2" width="10" height="22" fill="#FFFFFF"/>
+              <polygon points="36,-2 41,-7 46,-2" fill="#1B3A6B"/>
+            </g>
+            <!-- Belltower -->
+            <g transform="translate(160 200)">
+              <rect x="0" y="0" width="6" height="32" fill="#FFFFFF"/>
+              <polygon points="-2,0 3,-8 8,0" fill="#1B3A6B"/>
+            </g>
+
+            <!-- Small sailing boat -->
+            <g transform="translate(80 360)">
+              <path d="M0,0 L24,0 L20,8 L4,8 Z" fill="#FFFFFF"/>
+              <line x1="12" y1="0" x2="12" y2="-22" stroke="#FFFFFF" stroke-width="1"/>
+              <path d="M12,-22 L12,-2 L24,-2 Z" fill="#FFFFFF" opacity="0.9"/>
+            </g>
+            <g transform="translate(280 380)" opacity="0.8">
+              <path d="M0,0 L18,0 L15,6 L3,6 Z" fill="#FFFFFF"/>
+              <line x1="9" y1="0" x2="9" y2="-16" stroke="#FFFFFF" stroke-width="1"/>
+              <path d="M9,-16 L9,-2 L18,-2 Z" fill="#FFFFFF" opacity="0.85"/>
+            </g>
+
+            <!-- Pin marker (Camogli — studio location) -->
+            <g class="pin-group" transform="translate(150 196)">
+              <circle cx="0" cy="20" r="6" fill="#1B3A6B" opacity="0.18"/>
+              <path d="M0,-18 C-8,-18 -12,-12 -12,-6 C-12,2 0,16 0,16 C0,16 12,2 12,-6 C12,-12 8,-18 0,-18 Z"
+                    fill="#1B3A6B" stroke="#FFFFFF" stroke-width="1.6"/>
+              <circle cx="0" cy="-7" r="4" fill="#F5E6C8"/>
+            </g>
+
+            <!-- Compass rose, lower right -->
+            <g transform="translate(345 415)" opacity="0.85">
+              <circle r="22" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+              <polygon points="0,-18 4,0 0,18 -4,0" fill="#FFFFFF"/>
+              <polygon points="0,-18 4,0 0,0" fill="#FFFFFF" opacity="0.5"/>
+              <text x="0" y="-26" text-anchor="middle" fill="#FFFFFF" font-size="9" font-family="JetBrains Mono, monospace">N</text>
+            </g>
+          </svg>
+
+          <div class="coast-overlay">
+            <div class="lbl">Studio · Camogli</div>
+            <div class="place"><em>Golfo Paradiso</em></div>
+            <div class="coords">44°20′55″N · 9°09′22″E</div>
+          </div>
+        </div>
+
+        <div class="studio-card">
+          <h4>Lo studio</h4>
+          <div class="row">
+            <div class="ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6-7-12a7 7 0 1 1 14 0c0 6-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div>
+              <strong>Indirizzo</strong>
+              <span>Via al Porto, 8 — 16032 Camogli (GE)</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>Telefono</strong>
+              <span>+39 0185 770 412</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4zM4 4l8 8 8-8"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>studio@modidivivere.it</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div>
+              <strong>Aperti</strong>
+              <span>Lun — Ven · 9.00 — 19.00</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="color:white;">
+          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
+          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        </a>
+        <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
+      </div>
+      <div>
+        <h4>Naviga</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">I servizi</a></li>
+          <li><a href="membership.html">La Membership</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Via al Porto, 8</li>
+          <li>16032 Camogli (GE)</li>
+          <li>+39 0185 770 412</li>
+          <li>studio@modidivivere.it</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stagione</h4>
+        <ul>
+          <li>Lunedì — Venerdì</li>
+          <li>9.00 — 19.00</li>
+          <li>Sabato su appuntamento</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 modidivivere — P.IVA 02478910103</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+// Stepper
+document.querySelectorAll('.stepper button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const input = btn.parentElement.querySelector('input');
+    const step = parseInt(btn.dataset.step, 10);
+    const min = parseInt(input.min, 10) || 1;
+    const max = parseInt(input.max, 10) || 99;
+    let val = parseInt(input.value, 10) || min;
+    val = Math.max(min, Math.min(max, val + step));
+    input.value = val;
+  });
+});
+
+// Form submission (mock)
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  form.classList.add('sent');
+  window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' });
+});
+document.getElementById('resetForm').addEventListener('click', () => {
+  form.reset();
+  form.classList.remove('sent');
+});
+</script>
+</body>
+</html>
