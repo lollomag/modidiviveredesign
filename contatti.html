@@ -6,11 +6,9 @@
 <title>Descrivi cosa cerchi — modidivivere</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
-.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
 .contact-page {
   padding: 130px 0 80px;
   background: linear-gradient(180deg, var(--sky) 0%, white 60%);
@@ -64,7 +62,7 @@
 }
 
 .c-form .step {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   color: var(--sea);
   font-size: 1rem;
@@ -83,7 +81,7 @@
 .field label {
   display: block;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--navy);
   font-weight: 500;
@@ -164,7 +162,7 @@
   flex: 1;
   border: none;
   text-align: center;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.15rem;
   color: var(--navy);
   background: transparent;
@@ -218,7 +216,7 @@
 .chip-label {
   font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 .chip-check {
   margin-left: auto;
@@ -288,13 +286,13 @@
 }
 .coast-overlay .lbl {
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0;
   text-transform: uppercase;
   opacity: 0.85;
   margin-bottom: 8px;
 }
 .coast-overlay .place {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 1.6rem;
   font-weight: 400;
@@ -322,7 +320,7 @@
   box-shadow: var(--shadow-sm);
 }
 .studio-card h4 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 400;
@@ -349,7 +347,7 @@
 .studio-card strong {
   display: block;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 500;
@@ -394,8 +392,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">m</span>
-      <span class="brand-name">modi<em>di</em>vivere</span>
+      <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -423,7 +420,7 @@
       <div class="c-form-wrap">
         <span class="eyebrow reveal">Descrivi cosa cerchi</span>
         <h1 class="reveal delay-1">Raccontaci<br><em>i tuoi modi di vivere.</em></h1>
-        <p class="lead reveal delay-2">Pochi campi, una conversazione vera. Il tuo concierge ti risponde personalmente entro 48 ore — con una proposta su misura, riservata e senza impegno. <a href="#accreditamento" style="color: var(--sea); text-decoration: underline; text-underline-offset: 3px;">Sei qui per l'accreditamento?</a></p>
+        <p class="lead reveal delay-2">Pochi campi, una conversazione vera. Il tuo concierge ti risponde personalmente entro 48 ore — con una proposta su misura, riservata e senza impegno. <a href="#accreditamento" class="link-accent">Sei qui per l'accreditamento?</a></p>
 
         <form class="c-form reveal delay-3" id="contactForm" novalidate>
           <div class="form-body">
@@ -439,7 +436,7 @@
               </div>
             </div>
 
-            <div class="step" style="margin-top: 8px;">ii. Quando e in quanti</div>
+            <div class="step step--section-gap">ii. Quando e in quanti</div>
             <div class="field-row three">
               <div class="field has-icon">
                 <label for="arrivo">Arrivo</label>
@@ -459,7 +456,7 @@
               </div>
             </div>
 
-            <div class="step" style="margin-top: 8px;">iii. Cosa vi farebbe felici</div>
+            <div class="step step--section-gap">iii. Cosa vi farebbe felici</div>
             <div class="field">
               <label>Selezionate quanto vi attira</label>
               <div class="chips">
@@ -498,7 +495,7 @@
               </div>
             </div>
 
-            <div class="step" style="margin-top: 8px;">iv. Una nota libera</div>
+            <div class="step step--section-gap">iv. Una nota libera</div>
             <div class="field">
               <label for="note">Raccontateci qualcosa di voi</label>
               <textarea id="note" name="note" placeholder="Un anniversario, allergie alimentari, ospiti speciali, una vacanza che avete amato in passato..."></textarea>
@@ -673,9 +670,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand" style="color:white;">
-          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
-          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        <a href="index.html" class="brand">
+          <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
         </a>
         <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
       </div>

@@ -4,16 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chi siamo — modidivivere</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>
-.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
-.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
-</style>
-
-
 <style>
 /* —— Tweak modes — Stagione (palette/imagery) —— */
 body[data-stagione="estate"]   { /* default — bright sky/sea, sand */ }
@@ -79,12 +70,6 @@ body[data-densita="compatto"] {
 .cs-closing { padding: var(--pad-section, 72px) 0; }
 .cs-hero-visual .frame { aspect-ratio: var(--hero-img-ar, 4 / 5); }
 .member-img { aspect-ratio: var(--member-ar, 4 / 5); }
-.cs-hero h1, .values-head h2, .story-head h2, .team-head h2, .cs-closing h2 {
-  font-size: calc(clamp(2rem, 3.6vw, 3.2rem) * var(--serif-scale, 1));
-}
-.cs-hero h1 {
-  font-size: calc(clamp(2.6rem, 5.4vw, 4.6rem) * var(--serif-scale, 1));
-}
 /* Compact: tighter card padding & gaps */
 body[data-densita="compatto"] .value-card { padding: 24px 22px; }
 body[data-densita="compatto"] .values-grid { gap: 14px; }
@@ -97,13 +82,7 @@ body[data-densita="editoriale"] .values-grid { gap: 32px; }
 body[data-densita="editoriale"] .team-grid { gap: 36px; }
 body[data-densita="editoriale"] .t-row { padding: 38px 0; }
 
-/* —— Tweak — Voce (subtle stylistic shift) —— */
-body[data-voce="amici"] {
-  --serif: 'Playfair Display', Georgia, serif;
-}
-body[data-voce="amici"] h1 em,
-body[data-voce="amici"] h2 em,
-body[data-voce="amici"] h3 em { letter-spacing: 0.01em; }
+/* —— Tweak — Voce (copy alternativa / stessa tipografia) —— */
 /* Voce shows/hides parallel copy versions */
 .voice-studio { display: inline; }
 .voice-amici  { display: none; }
@@ -134,7 +113,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   position: relative;
 }
 .cs-hero h1 {
-  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  font-size: calc(clamp(2.6rem, 5.4vw, 4.6rem) * var(--serif-scale, 1));
   margin: 22px 0 28px;
 }
 .cs-hero h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
@@ -171,7 +150,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   box-shadow: var(--shadow-md);
 }
 .cs-hero-visual .since .num {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 2.2rem;
   font-style: italic;
   color: var(--navy);
@@ -181,14 +160,14 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   display: block;
   margin-top: 6px;
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 /* —— Manifesto / valori —— */
 .values {
-  padding: 72px 0;
+  padding: 100px 0;
   background: white;
 }
 .values-head { max-width: 720px; margin-bottom: 48px; }
@@ -212,7 +191,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   border-color: rgba(74, 144, 217, 0.3);
 }
 .value-card .num {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 1.05rem;
   color: var(--sea);
@@ -231,7 +210,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
 
 /* —— Storia (timeline) —— */
 .story {
-  padding: 72px 0;
+  padding: 100px 0;
   background: var(--sky);
 }
 .story-head { text-align: center; margin-bottom: 52px; max-width: 680px; margin-left: auto; margin-right: auto; }
@@ -259,7 +238,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   position: relative;
 }
 .t-row .year {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 1.4rem;
   color: var(--navy);
@@ -280,7 +259,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   padding-left: 18px;
 }
 .t-row .body h4 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.15rem;
   font-weight: 500;
   color: var(--navy);
@@ -294,7 +273,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
 
 /* —— Team —— */
 .team {
-  padding: 72px 0;
+  padding: 100px 0;
   background: white;
 }
 .team-head { text-align: center; margin-bottom: 48px; max-width: 680px; margin-left: auto; margin-right: auto; }
@@ -329,7 +308,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
 .member-body { padding: 26px 28px 30px; }
 .member-body .role {
   font-size: 0.74rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--sea);
   margin-bottom: 8px;
@@ -357,7 +336,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   align-items: center;
 }
 .press-inner .lbl {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 1.05rem;
   color: var(--sand);
@@ -368,12 +347,12 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   align-items: center;
   gap: 48px;
   color: rgba(255, 255, 255, 0.65);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.15rem;
   font-weight: 500;
 }
 .press-inner .marks span {
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   transition: color 0.3s ease;
 }
 .press-inner .marks span:hover { color: white; }
@@ -384,7 +363,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
 
 /* —— Closing —— */
 .cs-closing {
-  padding: 72px 0;
+  padding: 100px 0;
   background: var(--sand);
   text-align: center;
   position: relative;
@@ -434,8 +413,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">m</span>
-      <span class="brand-name">modi<em>di</em>vivere</span>
+      <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -622,7 +600,7 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   <div class="container">
     <div class="cs-closing-inner">
       <span class="eyebrow reveal">Una conversazione</span>
-      <h2 class="reveal delay-1" style="margin-top: 14px;"><span class="voice-studio">Conoscersi,<br><em>è il primo passo.</em></span><span class="voice-amici">Conoscerci,<br><em>è il primo passo.</em></span></h2>
+      <h2 class="reveal delay-1 u-mt-14"><span class="voice-studio">Conoscersi,<br><em>è il primo passo.</em></span><span class="voice-amici">Conoscerci,<br><em>è il primo passo.</em></span></h2>
       <p class="reveal delay-2"><span class="voice-studio">Scrivete o telefonate. Vi rispondiamo personalmente — di solito Carlotta o Davide — entro 48 ore.</span><span class="voice-amici">Scrivici o chiamaci. Ti risponde uno di noi — di solito Carlotta o Davide — entro 48 ore.</span></p>
       <div class="reveal delay-3">
         <a href="contatti.html" class="btn btn-primary cta-float">
@@ -639,9 +617,8 @@ body[data-voce="amici"] .voice-amici  { display: inline; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand" style="color:white;">
-          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
-          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        <a href="index.html" class="brand">
+          <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
         </a>
         <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
       </div>

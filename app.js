@@ -34,9 +34,11 @@
 (function parallax() {
   const hero = document.querySelector('[data-parallax]');
   if (!hero) return;
+  const wrapper = hero.closest('.hero');
   const onScroll = () => {
     const y = window.scrollY;
-    if (y > window.innerHeight) return;
+    const limit = wrapper ? wrapper.offsetHeight : window.innerHeight;
+    if (y > limit) return;
     hero.style.transform = `translate3d(0, ${y * 0.18}px, 0) scale(${1 + y * 0.0002})`;
   };
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -48,13 +50,6 @@
   const btn = document.querySelector('.menu-btn');
   const links = document.querySelector('.nav-links');
   if (!btn || !links || !nav) return;
-
-  // Inject mobile CTA link if not already present
-  if (!links.querySelector('.nav-mobile-cta')) {
-    const cta = document.createElement('li');
-    cta.innerHTML = '<a href="contatti.html" class="nav-mobile-cta">Prenota i servizi</a>';
-    links.appendChild(cta);
-  }
 
   function openMenu() {
     nav.classList.add('menu-open');

@@ -4,15 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>I servizi — modidivivere</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* —— Brand —— */
-.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
-.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
-
 /* —— Servizi hero —— */
 .svc-hero {
   padding: 150px 0 72px;
@@ -48,7 +41,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 56px;
+  margin-top: 14px;
 }
 .svc-toc a {
   display: inline-flex;
@@ -71,7 +64,7 @@
 
 /* —— Ambiti —— */
 .svc-ambiti {
-  padding: 72px 0;
+  padding: 100px 0;
   background: var(--white);
   position: relative;
 }
@@ -107,7 +100,7 @@
   box-shadow: var(--shadow-sm);
 }
 .amb-block .amb-info .label {
-  font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+  font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase;
   color: var(--sand-deep); font-weight: 500; margin-bottom: 14px; display: block;
 }
 .amb-block .amb-info h3 {
@@ -139,8 +132,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">m</span>
-      <span class="brand-name">modi<em>di</em>vivere</span>
+      <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -168,7 +160,7 @@
       <h1 class="reveal delay-1">Tre pilastri,<br>una sola <em>cura del dettaglio.</em></h1>
       <p class="lead reveal delay-2">Da Portofino a Viareggio, lavoriamo su tre fronti: un concierge che è il tuo assistente locale, una rete di partner costruita persona per persona, e una piattaforma di booking che li mette tutti a portata di un solo accesso.</p>
       
-      <div class="svc-toc reveal delay-3" style="margin-top: 14px;">
+      <div class="svc-toc reveal delay-3">
         <a href="#casa">Casa</a>
         <a href="#barca">Barca</a>
         <a href="#azienda">Azienda</a>
@@ -285,12 +277,12 @@
 </section>
 
 <!-- Closing CTA -->
-<section class="closing" style="background: var(--white); padding: 72px 0;">
+<section class="closing">
   <div class="container">
-    <div class="closing-inner" style="text-align:center; max-width: 720px; margin: 0 auto;">
+    <div class="closing-inner closing-inner--narrow">
       <span class="eyebrow reveal">Su misura, sempre</span>
-      <h2 class="reveal delay-1" style="margin-top: 14px; margin-bottom: 22px;">Ogni viaggio <em style="font-style:italic;color:var(--sea);font-weight:400;">comincia da una telefonata.</em></h2>
-      <p class="reveal delay-2" style="color:var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 36px;">Raccontateci chi siete, quanti giorni avete, cosa vi farebbe felici. Da lì costruiamo, in tre giorni, una proposta riservata.</p>
+      <h2 class="reveal delay-1 u-mt-14 u-mb-22">Ogni viaggio <em>comincia da una telefonata.</em></h2>
+      <p class="reveal delay-2">Raccontateci chi siete, quanti giorni avete, cosa vi farebbe felici. Da lì costruiamo, in tre giorni, una proposta riservata.</p>
       <div class="reveal delay-3">
         <a href="contatti.html" class="btn btn-primary cta-float">
           Inizia il tuo viaggio
@@ -306,9 +298,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand" style="color:white;">
-          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
-          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        <a href="index.html" class="brand">
+          <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
         </a>
         <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
       </div>

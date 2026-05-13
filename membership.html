@@ -4,16 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La Membership — modidivivere</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* Brand override */
-.brand-name { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
-.brand-name em { font-style: normal; font-weight: 500; color: var(--sea); }
-
-
 /* —— Hero —— */
 .m-hero {
   padding: 160px 0 80px;
@@ -28,7 +20,7 @@
 }
 .m-hero-inner { max-width: 880px; position: relative; }
 .m-hero .kicker {
-  font-size: 0.78rem; letter-spacing: 0.34em; text-transform: uppercase;
+  font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase;
   color: var(--sea); display: inline-flex; align-items: center; gap: 14px;
 }
 .m-hero .kicker::before { content: ''; width: 38px; height: 1px; background: var(--sea); }
@@ -38,14 +30,14 @@
 }
 .m-hero h1 em { font-style: italic; color: var(--sea); font-weight: 400; }
 .m-hero .lead {
-  font-family: var(--serif); font-style: italic;
+  font-family: var(--sans); font-style: italic;
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   color: var(--muted); max-width: 680px; line-height: 1.55;
   margin-bottom: 32px;
 }
 
 /* —— Manifesto: how membership works —— */
-.m-how { padding: 72px 0; background: white; }
+.m-how { padding: 100px 0; background: white; }
 .m-how-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 56px; }
 .m-step {
   background: var(--sky);
@@ -56,7 +48,7 @@
 }
 .m-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .m-step .n {
-  font-family: var(--serif); font-style: italic; font-size: 2.4rem;
+  font-family: var(--sans); font-style: italic; font-size: 2.4rem;
   color: var(--sea); line-height: 1; margin-bottom: 18px;
   font-weight: 400;
 }
@@ -65,12 +57,12 @@
 .m-step p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
 .m-head { max-width: 760px; }
-.m-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.m-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
 .m-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
 
 
 /* —— Accreditamento —— */
-.accredit { padding: 72px 0; background: white; }
+.accredit { padding: 100px 0; background: white; }
 .accredit-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; }
 .accredit h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
 .accredit p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; margin: 22px 0; }
@@ -84,7 +76,7 @@
 }
 .accredit .req li:first-child { border-top: none; }
 .accredit .req .roman {
-  font-family: var(--serif); font-style: italic; color: var(--sea); font-size: 1.05rem;
+  font-family: var(--sans); font-style: italic; color: var(--sea); font-size: 1.05rem;
 }
 .accredit .req strong { display: block; color: var(--navy); font-weight: 500; margin-bottom: 4px; }
 .accredit .req span { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
@@ -102,20 +94,20 @@
   background: rgba(74,144,217,.22); filter: blur(40px);
 }
 .accredit-card .lbl {
-  font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase;
   color: var(--navy); font-weight: 500; margin-bottom: 14px; position: relative;
 }
 .accredit-card h3 { font-size: 1.7rem; margin-bottom: 14px; position: relative; }
 .accredit-card h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
-.accredit-card p { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.05rem; line-height: 1.55; opacity: .85; margin-bottom: 28px; position: relative; }
+.accredit-card p { font-family: var(--sans); font-style: italic; color: var(--ink); font-size: 1.05rem; line-height: 1.55; opacity: .85; margin-bottom: 28px; position: relative; }
 .accredit-card .btn { position: relative; }
 
 /* —— Login area —— */
-.login { padding: 72px 0; background: var(--navy); color: white; }
+.login { padding: 100px 0; background: var(--navy); color: white; }
 .login-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1080px; margin: 0 auto; }
 .login h2 { color: white; }
 .login h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
-.login .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.login .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
 .login p { color: rgba(255,255,255,.78); line-height: 1.7; margin: 22px 0 28px; max-width: 460px; }
 
 .login-form {
@@ -125,11 +117,11 @@
   border-radius: var(--radius-lg);
   padding: 40px 42px;
 }
-.login-form h3 { color: white; font-family: var(--serif); font-style: italic; font-size: 1.5rem; font-weight: 400; margin-bottom: 8px; }
+.login-form h3 { color: white; font-family: var(--sans); font-style: italic; font-size: 1.5rem; font-weight: 400; margin-bottom: 8px; }
 .login-form .sub { color: rgba(255,255,255,.65); font-size: 0.88rem; margin-bottom: 28px; }
 .login-form .field { margin-bottom: 18px; }
 .login-form label {
-  display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  display: block; font-size: 0.72rem; letter-spacing: 0; text-transform: uppercase;
   color: rgba(255,255,255,.7); margin-bottom: 8px;
 }
 .login-form input {
@@ -156,7 +148,7 @@
   width: 100%; padding: 16px 24px;
   background: var(--sand); color: var(--navy);
   border: none; border-radius: 999px;
-  font-family: var(--sans); font-weight: 500; font-size: 0.96rem; letter-spacing: 0.02em;
+  font-family: var(--sans); font-weight: 500; font-size: 0.96rem; letter-spacing: 0;
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   transition: transform .3s ease, box-shadow .3s ease;
@@ -181,8 +173,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">m</span>
-      <span class="brand-name">modi<em>di</em>vivere</span>
+      <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -209,7 +200,7 @@
       <span class="kicker reveal">La Membership · 2026</span>
       <h1 class="reveal delay-1">Una rete piccola,<br><em>aperta su accreditamento.</em></h1>
       <p class="lead reveal delay-2">La membership è la porta d'accesso al concierge dedicato, ai partner della rete e all'agenda di esperienze riservate. Lavoriamo in piccoli numeri perché ogni richiesta merita una risposta personale.</p>
-      <div class="reveal delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
+      <div class="reveal delay-3 flex-gap">
         <a href="#accreditamento" class="btn btn-primary">Richiedi accreditamento</a>
       </div>
     </div>
@@ -248,7 +239,7 @@
   <div class="container">
     <div class="accredit-grid">
       <div>
-        <span class="kicker reveal" style="color: var(--sea); font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px;">Richiesta accreditamento</span>
+        <span class="kicker reveal kicker--accent kicker--block">Richiesta accreditamento</span>
         <h2 class="reveal delay-1">Tre passi <em>per entrare nella rete.</em></h2>
         <p class="reveal delay-2">Manteniamo la rete piccola per garantirne la qualità. Ogni nuovo membro arriva attraverso un percorso di conoscenza — è il modo in cui ci assicuriamo che la nostra cura per il dettaglio resti coerente.</p>
 
@@ -289,7 +280,7 @@
         <span class="kicker reveal">Area membri</span>
         <h2 class="reveal delay-1">Già <em>accreditato?</em></h2>
         <p class="reveal delay-2">Accedi alla piattaforma di booking, all'agenda esperienze e al tuo concierge. Le tue credenziali ti sono state inviate via email al momento dell'accreditamento.</p>
-        <p class="reveal delay-3" style="font-size:0.88rem; opacity:.6;">Per problemi di accesso, scrivi a <a href="mailto:studio@modidivivere.it" style="color:var(--sand);">studio@modidivivere.it</a> o chiama il +39 0185 770 412.</p>
+        <p class="reveal delay-3 login-help">Per problemi di accesso, scrivi a <a href="mailto:studio@modidivivere.it">studio@modidivivere.it</a> o chiama il +39 0185 770 412.</p>
       </div>
 
       <form class="login-form reveal delay-2" onsubmit="event.preventDefault(); alert('Area membri — in costruzione');">
@@ -305,8 +296,8 @@
           <input type="password" id="pw" placeholder="••••••••" autocomplete="current-password" required>
         </div>
         <div class="row">
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; letter-spacing:0;">
-            <input type="checkbox" style="width:auto;"> Ricordami
+          <label class="checkbox-label">
+            <input type="checkbox"> Ricordami
           </label>
           <a href="#">Password dimenticata?</a>
         </div>
@@ -325,9 +316,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand" style="color:white;">
-          <span class="brand-mark" style="background:linear-gradient(135deg, #F5E6C8, #E8D4A8); color:#1B3A6B;">m</span>
-          <span class="brand-name" style="color:white;">modi<em>di</em>vivere</span>
+        <a href="index.html" class="brand">
+          <img class="brand-logo" src="uploads/logo-mdv.png" alt="modidivivere" width="1069" height="233" decoding="async">
         </a>
         <p>Concierge Territoriale tra Liguria e Toscana. Da Portofino a Viareggio: una rete su misura per il tuo stile di vita.</p>
       </div>
