@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La Membership — modidivivere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
 /* —— Hero —— */
@@ -14,16 +17,11 @@
 }
 .m-hero::before {
   content: ''; position: absolute; top: 60px; right: -160px;
-  width: 560px; height: 560px; border-radius: 50%;
+  width: 560px; height: 560px; border-radius: 0;
   background: radial-gradient(circle, rgba(74,144,217,.18) 0%, transparent 70%);
   filter: blur(20px);
 }
 .m-hero-inner { max-width: 880px; position: relative; }
-.m-hero .kicker {
-  font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase;
-  color: var(--sea); display: inline-flex; align-items: center; gap: 14px;
-}
-.m-hero .kicker::before { content: ''; width: 38px; height: 1px; background: var(--sea); }
 .m-hero h1 {
   font-size: clamp(2.6rem, 5.4vw, 4.6rem);
   margin: 24px 0 28px; line-height: 1.06;
@@ -49,7 +47,7 @@
 .m-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .m-step .n {
   font-family: var(--sans); font-style: italic; font-size: 2.4rem;
-  color: var(--sea); line-height: 1; margin-bottom: 18px;
+  color: var(--gold); line-height: 1; margin-bottom: 18px;
   font-weight: 400;
 }
 .m-step h3 { font-size: 1.35rem; margin-bottom: 10px; }
@@ -57,7 +55,7 @@
 .m-step p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
 .m-head { max-width: 760px; }
-.m-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.m-head .kicker { margin-bottom: 14px; }
 .m-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
 
 
@@ -76,7 +74,7 @@
 }
 .accredit .req li:first-child { border-top: none; }
 .accredit .req .roman {
-  font-family: var(--sans); font-style: italic; color: var(--sea); font-size: 1.05rem;
+  font-family: var(--sans); font-style: italic; color: var(--gold); font-size: 1.05rem;
 }
 .accredit .req strong { display: block; color: var(--navy); font-weight: 500; margin-bottom: 4px; }
 .accredit .req span { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
@@ -90,7 +88,7 @@
 }
 .accredit-card::before {
   content: ''; position: absolute; right: -80px; top: -80px;
-  width: 240px; height: 240px; border-radius: 50%;
+  width: 240px; height: 240px; border-radius: 0;
   background: rgba(74,144,217,.22); filter: blur(40px);
 }
 .accredit-card .lbl {
@@ -107,7 +105,7 @@
 .login-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1080px; margin: 0 auto; }
 .login h2 { color: white; }
 .login h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
-.login .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
+.login .kicker { margin-bottom: 14px; }
 .login p { color: rgba(255,255,255,.78); line-height: 1.7; margin: 22px 0 28px; max-width: 460px; }
 
 .login-form {
@@ -128,7 +126,7 @@
   width: 100%; padding: 14px 16px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.18);
-  border-radius: 12px;
+  border-radius: 0;
   color: white; font-family: var(--sans); font-size: 1rem;
   transition: all .3s ease;
 }

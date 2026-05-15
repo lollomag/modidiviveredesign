@@ -1,104 +1,24 @@
 /* Modi di Vivere — shared styles */
-
-/* Avenir Next (locale — cartella font/, file AvenirNextCyr*) */
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Light.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-LightItalic.woff2') format('woff2'),
-       url('font/AvenirNextCyr-LightItalic.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Regular.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Italic.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Medium.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-MediumItalic.woff2') format('woff2'),
-       url('font/AvenirNextCyr-MediumItalic.woff') format('woff');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Demi.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Demi.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-DemiItalic.woff2') format('woff2'),
-       url('font/AvenirNextCyr-DemiItalic.woff') format('woff');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-Bold.woff2') format('woff2'),
-       url('font/AvenirNextCyr-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('font/AvenirNextCyr-BoldItalic.woff2') format('woff2'),
-       url('font/AvenirNextCyr-BoldItalic.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
+/* Corpo e titoli: Plus Jakarta Sans (Google Fonts, link negli HTML) */
 
 :root {
   --white: #FFFFFF;
   --sky: #D9E6F4;
   --sea: #2F6FB5;
-  --navy: rgb(0, 3, 20);
+  --navy: rgb(0, 3, 40);
   --navy-soft: rgb(45, 58, 95);
   --sand: #F5E6C8;
   --sand-deep: #E8D4A8;
+  --gold: #d4af37;
   --ink: #0a1430;
   --muted: #6B7B96;
   --line: rgba(0, 3, 20, 0.12);
   --shadow-sm: 0 2px 12px rgba(0, 3, 20, 0.06);
   --shadow-md: 0 12px 40px rgba(0, 3, 20, 0.10);
   --shadow-lg: 0 24px 64px rgba(0, 3, 20, 0.16);
-  --radius: 14px;
-  --radius-lg: 22px;
-  --sans: 'Avenir Next', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --radius: 0;
+  --radius-lg: 0;
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
   --container: 1240px;
   /* Titoli di sezione (h2) — stesso clamp ovunque */
   --section-heading-size: clamp(1.8rem, 3.2vw, 2.8rem);
@@ -153,7 +73,7 @@ p { color: var(--ink); }
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--sea);
+  color: var(--navy);
 }
 
 .container {
@@ -168,6 +88,10 @@ p { color: var(--ink); }
   margin: 0 auto;
   padding: 0 32px;
   width: 100%;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 /* ——— Navigation ——— */
@@ -248,6 +172,11 @@ p { color: var(--ink); }
 }
 .nav-links a.active { color: rgba(255, 255, 255, 0.95); }
 
+/* Voce “Prenota i servizi” nel menu hamburger (mobile); iniettata da app.js */
+.nav-links > li.nav-cta-mobile {
+  display: none;
+}
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -276,7 +205,7 @@ p { color: var(--ink); }
   cursor: pointer;
   color: rgba(255, 255, 255, 0.92);
   width: 40px; height: 40px;
-  border-radius: 8px;
+  border-radius: 0;
   align-items: center;
   justify-content: center;
   transition: background 0.2s ease;
@@ -418,6 +347,26 @@ section { position: relative; }
   line-height: 1.7;
 }
 
+/* Intro sezione: blocchi kicker + titolo (+ testo) centrati, riusabile ovunque */
+.section-intro {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+.section-intro .kicker {
+  margin-bottom: 14px;
+}
+
+.section-intro--wide {
+  max-width: 880px;
+}
+
+.section-intro--spacious {
+  margin-bottom: 64px;
+}
+
 /* ——— Image placeholder framing ——— */
 .img-frame {
   position: relative;
@@ -448,18 +397,6 @@ section { position: relative; }
 .closing-inner--narrow {
   max-width: 720px;
 }
-.closing .kicker {
-  color: var(--sea);
-  font-size: 0.78rem;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.closing h2 em {
-  font-style: italic;
-  color: var(--sea);
-  font-weight: 400;
-}
 .closing p {
   color: var(--muted);
   font-size: 1.05rem;
@@ -472,7 +409,7 @@ section { position: relative; }
   margin-bottom: 32px;
 }
 .hero .sub.hero-tagline-accent {
-  color: #d4af37;
+  color: var(--gold);
   text-transform: uppercase;
   font-style: normal;
   font-weight: 600;
@@ -505,7 +442,7 @@ section { position: relative; }
 
 /* Kicker variants (reuse with .kicker where needed) */
 .kicker--accent {
-  color: var(--sea);
+  color: var(--navy);
   font-size: 0.78rem;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -516,6 +453,27 @@ section { position: relative; }
   margin-bottom: 14px;
 }
 
+/* Kicker con animazione reveal: oro, lineette, layout — indipendente da .center */
+span.kicker.reveal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: calc(0.78rem + 2px);
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+span.kicker.reveal::before,
+span.kicker.reveal::after {
+  content: '';
+  flex-shrink: 0;
+  width: 38px;
+  height: 1px;
+  background: var(--gold);
+}
 /* ——— Membership login ——— */
 .login-help {
   font-size: 0.88rem;
@@ -557,7 +515,7 @@ section { position: relative; }
   .nav-inner { padding: 0 22px; }
   .hero .meta-row { padding: 0 22px; }
   .nav-cta {
-    margin-left: auto;
+    display: none;
   }
   .menu-btn { display: flex; }
   .section-pad { padding: 72px 0; }
@@ -582,7 +540,7 @@ section { position: relative; }
                 padding 0.38s ease;
   }
   .nav.menu-open .nav-links {
-    max-height: 480px;
+    max-height: 560px;
     opacity: 1;
     pointer-events: auto;
     padding: 12px 22px 24px;
@@ -601,6 +559,34 @@ section { position: relative; }
   .nav-links a:hover,
   .nav-links a.active { color: var(--sand); }
   .nav-links a::after { display: none; }
+
+  .nav-links > li.nav-cta-mobile {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: none;
+  }
+  .nav-links a.nav-mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 22px;
+    margin: 0;
+    background: #fff;
+    color: var(--navy);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  }
+  .nav-links a.nav-mobile-cta:hover {
+    background: var(--sand);
+    color: var(--navy);
+    transform: translateY(-1px);
+  }
 }
 @media (max-width: 520px) {
   .footer-grid { grid-template-columns: 1fr; }

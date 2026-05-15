@@ -6,7 +6,7 @@
 <title>Descrivi cosa cerchi — modidivivere</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
 .contact-page {
@@ -21,7 +21,7 @@
   position: absolute;
   top: 100px; right: -200px;
   width: 600px; height: 600px;
-  border-radius: 50%;
+  border-radius: 0;
   background: radial-gradient(circle, rgba(74,144,217,0.18) 0%, transparent 70%);
   filter: blur(20px);
   z-index: 0;
@@ -95,7 +95,7 @@
   width: 100%;
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0;
   font-family: var(--sans);
   font-size: 1rem;
   color: var(--ink);
@@ -142,7 +142,7 @@
   align-items: center;
   gap: 0;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.9);
   overflow: hidden;
   width: 100%;
@@ -189,11 +189,11 @@
   gap: 12px;
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.9);
   transition: all 0.3s ease;
 }
-.chip:hover .chip-body { border-color: var(--sea); transform: translateY(-1px); }
+.chip:hover .chip-body { border-color: rgba(212, 175, 55, 0.55); transform: translateY(-1px); }
 .chip input:checked ~ .chip-body {
   border-color: var(--navy);
   background: var(--navy);
@@ -202,9 +202,9 @@
 }
 .chip-ico {
   width: 32px; height: 32px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--sky);
-  color: var(--navy);
+  color: var(--gold);
   display: grid; place-items: center;
   flex-shrink: 0;
   transition: all 0.3s ease;
@@ -221,7 +221,7 @@
 .chip-check {
   margin-left: auto;
   width: 18px; height: 18px;
-  border-radius: 50%;
+  border-radius: 0;
   border: 1.5px solid var(--line);
   display: grid; place-items: center;
   transition: all 0.3s ease;
@@ -258,7 +258,7 @@
   gap: 8px;
   line-height: 1.5;
 }
-.privacy-note svg { flex-shrink: 0; margin-top: 2px; color: var(--sea); }
+.privacy-note svg { flex-shrink: 0; margin-top: 2px; color: var(--gold); }
 
 /* —— Sidebar (illustration) —— */
 .c-side {
@@ -338,9 +338,9 @@
 .studio-card .row:last-child { border-bottom: none; }
 .studio-card .ico {
   width: 28px; height: 28px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--sky);
-  color: var(--navy);
+  color: var(--gold);
   display: grid; place-items: center;
   margin-top: 2px;
 }
@@ -366,7 +366,7 @@
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .confirmation .badge-ok {
   width: 64px; height: 64px;
-  border-radius: 50%;
+  border-radius: 0;
   margin: 0 auto 22px;
   background: var(--sand);
   color: var(--navy);

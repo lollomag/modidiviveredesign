@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>modidivivere — Concierge Territoriale tra Liguria e Toscana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
 /* —— PRINT —— */
@@ -41,10 +44,12 @@ html, body { background: white !important; }
 .pillar p { font-size: 0.86rem !important; }
 .pillar .more { display: none !important; }
 
-/* Terre: keep 2 columns */
+/* Terre: due colonne compatte, layout “pulito” senza card */
 .terre-head { grid-template-columns: 1fr 1fr !important; gap: 40px !important; margin-bottom: 30px !important; }
-.terre-cols { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
-.terre-col { break-inside: avoid; padding: 24px 26px !important; }
+.terre-cols { grid-template-columns: 1fr 1fr !important; gap: 0 !important; }
+.terre-cols > .terre-col:first-child { padding-right: 24px !important; border-right: 1px solid rgba(255,255,255,0.14) !important; }
+.terre-cols > .terre-col:last-child { padding-left: 24px !important; }
+.terre-col { break-inside: avoid; background: transparent !important; padding: 0 !important; border-radius: 0 !important; }
 
 /* Booking + member: keep 2 columns */
 .booking-grid, .member-inner { grid-template-columns: 1.1fr 1fr !important; gap: 40px !important; }
@@ -103,7 +108,7 @@ a { text-decoration: none !important; }
 .hero .kicker::before { content: ''; width: 38px; height: 1px; background: var(--sand); }
 .hero h1 {
   color: white;
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(3rem, calc(3rem + 0.4375vw), 3.5rem);
   line-height: 1.08;
   margin: 18px 0 16px;
@@ -142,11 +147,8 @@ a { text-decoration: none !important; }
   position: relative;
 }
 .center .kicker {
-  font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase;
-  color: var(--sea); display: inline-flex; align-items: center; gap: 14px;
   margin-bottom: 28px;
 }
-.center .kicker::before, .center .kicker::after { content: ''; width: 38px; height: 1px; background: var(--sea); }
 .center h2 {
   max-width: 920px; margin: 0 auto 22px; text-wrap: balance;
   font-weight: 400;
@@ -162,15 +164,21 @@ a { text-decoration: none !important; }
   line-height: 1.55;
   text-wrap: pretty;
 }
+.center p.center-cta-lead {
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  color: var(--ink);
+  max-width: 640px;
+  margin: -12px auto 28px;
+  line-height: 1.58;
+}
 .center-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* —— 3 Pillars —— */
 .pillars { padding: 100px 0; background: var(--sky); }
-.pillars-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
-.pillars-head .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 14px; }
-.pillars-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.pillars .section-intro h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
 .pillar-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  margin-top: 80px;
 }
 .pillar {
   background: white;
@@ -179,16 +187,17 @@ a { text-decoration: none !important; }
   padding: 0;
   overflow: hidden;
   display: flex; flex-direction: column;
-  transition: transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s ease, border-color .55s ease;
+  box-shadow: none;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), border-color .55s ease;
 }
-.pillar:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(74,144,217,.35); }
+.pillar:hover { transform: translateY(-6px); border-color: rgba(74,144,217,.35); }
 .pillar .roman {
   background: var(--navy);
   color: white;
   padding: 28px 32px 22px;
   display: flex; align-items: baseline; gap: 14px;
 }
-.pillar .roman .num { font-family: var(--sans); font-style: italic; font-size: 2rem; line-height: 1; color: var(--sand); }
+.pillar .roman .num { font-family: var(--sans); font-style: italic; font-size: 2rem; line-height: 1; color: var(--gold); }
 .pillar .roman .tag { font-size: 0.72rem; letter-spacing: 0; text-transform: uppercase; opacity: .85; }
 .pillar .body { padding: 30px 32px 36px; flex: 1; display: flex; flex-direction: column; }
 .pillar h3 { font-size: 1.55rem; margin-bottom: 8px; }
@@ -206,7 +215,7 @@ a { text-decoration: none !important; }
 /* —— Le Terre del Buon Vivere —— */
 .terre {
   padding: 100px 0;
-  background: var(--white);
+  background: var(--navy);
   position: relative;
   overflow: hidden;
 }
@@ -214,54 +223,84 @@ a { text-decoration: none !important; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
   margin-bottom: 56px;
 }
-.terre-head h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.terre-head h2 {
+  color: rgba(255, 255, 255, 0.96);
+}
+.terre-head h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
 .terre-head .stretch {
-  font-family: var(--sans); font-style: italic; color: var(--sea);
+  font-family: var(--sans); font-style: italic; color: var(--gold);
   font-size: 1.4rem; letter-spacing: 0;
   display: inline-flex; align-items: center; gap: 18px;
   margin-bottom: 18px;
 }
 .terre-head .stretch::before, .terre-head .stretch::after {
-  content: ''; width: 38px; height: 1px; background: var(--sea);
+  content: ''; width: 38px; height: 1px; background: var(--gold);
 }
 .terre-head p {
-  color: var(--muted); font-size: 1.05rem; line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78); font-size: 1.05rem; line-height: 1.75;
 }
 
+/* Due colonne “editoriali”: senza card colorate */
 .terre-cols {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+}
+.terre-cols > .terre-col:first-child {
+  padding-right: clamp(28px, 5vw, 72px);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+.terre-cols > .terre-col:last-child {
+  padding-left: clamp(28px, 5vw, 72px);
 }
 .terre-col {
-  background: var(--sky);
-  border-radius: var(--radius-lg);
-  padding: 36px 38px 38px;
+  background: transparent;
+  padding: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
-.terre-col.entro { background: var(--sand); }
 .terre-col h3 {
-  font-size: 1.4rem; margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: clamp(1.22rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-bottom: 6px;
 }
-.terre-col h3 em { font-style: italic; color: var(--sea); font-weight: 400; }
+.terre-col h3 em { font-style: italic; color: var(--sand); font-weight: 400; }
 .terre-col .lbl {
-  font-size: 0.74rem; letter-spacing: 0; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 22px;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+  margin-bottom: 20px;
 }
 .terre-list {
   list-style: none; margin: 0; padding: 0;
   display: flex; flex-direction: column;
 }
 .terre-list li {
-  padding: 16px 0; border-top: 1px solid rgba(27,58,107,.14);
-  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+  padding: 13px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
 }
-.terre-list li:first-child { border-top: none; }
+.terre-list li:first-child { border-top: none; padding-top: 0; }
 .terre-list .place {
-  font-family: var(--sans); font-style: italic; font-size: 1.18rem; color: var(--navy);
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 1.12rem;
+  color: rgba(255, 255, 255, 0.92);
 }
 .terre-list .note {
-  font-size: 0.74rem; letter-spacing: 0; text-transform: uppercase; color: var(--muted);
-  text-align: right; flex-shrink: 0;
+  font-size: 0.71rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.44);
+  text-align: right;
+  flex-shrink: 0;
 }
 
 /* —— Booking strip —— */
@@ -270,17 +309,18 @@ a { text-decoration: none !important; }
   background: var(--navy);
   color: white;
   position: relative; overflow: hidden;
+  border-bottom: 1px solid #fff;
 }
 .booking::before {
   content: ''; position: absolute; right: -8%; top: -10%;
-  width: 520px; height: 520px; border-radius: 50%;
+  width: 520px; height: 520px; border-radius: 0;
   background: radial-gradient(circle, rgba(245,230,200,.18) 0%, transparent 65%);
   filter: blur(20px);
 }
 .booking-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: center; position: relative; }
 .booking h2 { color: white; }
 .booking h2 em { font-style: italic; color: var(--sand); font-weight: 400; }
-.booking .kicker { color: var(--sand); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 16px; }
+.booking .kicker { margin-bottom: 16px; }
 .booking p { color: rgba(255,255,255,.78); font-size: 1.05rem; line-height: 1.75; margin-top: 22px; max-width: 540px; }
 
 .book-card {
@@ -301,7 +341,7 @@ a { text-decoration: none !important; }
 }
 .book-card .step:first-of-type { border-top: none; }
 .book-card .step .n {
-  width: 32px; height: 32px; border-radius: 50%;
+  width: 32px; height: 32px; border-radius: 0;
   background: var(--sand); color: var(--navy);
   display: grid; place-items: center;
   font-family: var(--sans); font-style: italic; font-size: 1rem; font-weight: 500;
@@ -328,12 +368,12 @@ a { text-decoration: none !important; }
   position: relative; overflow: hidden;
 }
 .member::before, .member::after {
-  content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; filter: blur(80px); opacity: .55; z-index: 0;
+  content: ''; position: absolute; width: 480px; height: 480px; border-radius: 0; filter: blur(80px); opacity: .55; z-index: 0;
 }
 .member::before { left: -160px; top: -160px; background: var(--sky); }
 .member::after { right: -160px; bottom: -160px; background: rgba(74,144,217,.30); }
 .member-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.member-inner .kicker { color: var(--sea); font-size: 0.78rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 16px; }
+.member-inner .kicker { margin-bottom: 16px; }
 .member-inner h2 em { font-style: italic; color: var(--sea); font-weight: 400; }
 .member-inner p { color: var(--ink); font-size: 1.05rem; line-height: 1.75; margin: 22px 0 28px; max-width: 520px; opacity: .85; }
 .member-bens { list-style: none; display: grid; gap: 14px; margin-bottom: 32px; }
@@ -342,7 +382,7 @@ a { text-decoration: none !important; }
   font-size: 0.96rem; color: var(--navy);
 }
 .member-bens .dot {
-  width: 26px; height: 26px; border-radius: 50%;
+  width: 26px; height: 26px; border-radius: 0;
   background: var(--navy); color: var(--sand);
   display: grid; place-items: center;
   font-family: var(--sans); font-style: italic; font-size: 0.78rem; flex-shrink: 0;
@@ -357,7 +397,7 @@ a { text-decoration: none !important; }
 .member-card .ribbon {
   position: absolute; top: -14px; left: 42px;
   background: var(--navy); color: white;
-  padding: 8px 16px; border-radius: 999px;
+  padding: 8px 16px; border-radius: 0;
   font-size: 0.7rem; letter-spacing: 0; text-transform: uppercase; font-weight: 500;
 }
 .member-card h3 { font-size: 1.6rem; margin: 14px 0 6px; }
@@ -372,7 +412,7 @@ a { text-decoration: none !important; }
   margin: 22px 0 28px; padding: 22px 0 0; border-top: 1px solid var(--line);
 }
 .member-card .feat .row { display: grid; grid-template-columns: 22px 1fr; gap: 12px; font-size: 0.92rem; color: var(--ink); align-items: start; }
-.member-card .feat .row .tick { color: var(--sea); }
+.member-card .feat .row .tick { color: var(--gold); }
 
 @media (max-width: 980px) {
   .pillar-grid { grid-template-columns: 1fr; }
@@ -389,11 +429,20 @@ a { text-decoration: none !important; }
   }
   .booking-grid,
   .member-inner { gap: 40px; }
+  .terre-cols > .terre-col:first-child {
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 40px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .terre-cols > .terre-col:last-child {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 540px) {
   .terre { padding: 72px 0; }
-  .terre-col { padding: 26px 22px 28px; }
   .terre-head .stretch {
     font-size: 1.15rem;
     gap: 12px;
@@ -484,6 +533,9 @@ a { text-decoration: none !important; }
       e cuciamo intorno a te una rete di luoghi, persone e attenzioni
       che diventano il tuo modo di vivere il territorio.
     </p>
+    <p class="center-cta-lead reveal delay-3">
+      Non trovi un servizio adatto alle tue esigenze? Contattaci per descrivere i tuoi obiettivi.
+    </p>
     <div class="center-actions reveal delay-3">
       <a href="contatti.html" class="btn btn-primary">Descrivi cosa cerchi</a>
       <a href="servizi.html" class="btn btn-ghost">Esplora i servizi</a>
@@ -494,7 +546,7 @@ a { text-decoration: none !important; }
 <!-- ——— 3 Pillars ——— -->
 <section class="pillars" data-screen-label="01 Home — Servizi esclusivi">
   <div class="container">
-    <div class="pillars-head">
+    <div class="section-intro">
       <span class="kicker reveal">I servizi esclusivi</span>
       <h2 class="reveal delay-1">Tre pilastri,<br>una sola <em>cura del dettaglio.</em></h2>
     </div>
@@ -573,7 +625,7 @@ a { text-decoration: none !important; }
         </ul>
       </div>
 
-      <div class="terre-col entro reveal delay-1">
+      <div class="terre-col reveal delay-1">
         <h3>L'<em>entroterra.</em></h3>
         <div class="lbl">Quattro valli da scoprire</div>
         <ul class="terre-list">

@@ -51,6 +51,14 @@
   const links = document.querySelector('.nav-links');
   if (!btn || !links || !nav) return;
 
+  if (!links.querySelector('.nav-cta-mobile')) {
+    const ctaLi = document.createElement('li');
+    ctaLi.className = 'nav-cta-mobile';
+    ctaLi.innerHTML =
+      '<a href="contatti.html" class="nav-mobile-cta">Prenota i servizi</a>';
+    links.appendChild(ctaLi);
+  }
+
   function openMenu() {
     nav.classList.add('menu-open');
     btn.setAttribute('aria-expanded', 'true');
